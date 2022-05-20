@@ -2,6 +2,7 @@ package wwf.org.tenant.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
@@ -14,9 +15,11 @@ public class Tenant {
     @Column(unique = true, nullable = false)
     private Long id;
 
+    @NotEmpty(message = "The name of the tenant can not be empty")
     @Column(unique = true, nullable = false)
     private String tenant;
 
+    @NotEmpty(message = "The name of the domain can not be empty")
     @Column(unique = true, nullable = false)
     private String domain;
 
