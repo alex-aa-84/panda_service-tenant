@@ -1,5 +1,6 @@
 package wwf.org.tenant.entity;
 import lombok.Data;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -16,6 +17,7 @@ public class Tenant {
     private Long id;
 
     @NotEmpty(message = "The name of the tenant can not be empty")
+    @UniqueElements(message = "register dupplicated")
     @Column(unique = true, nullable = false)
     private String tenant;
 
