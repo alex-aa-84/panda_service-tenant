@@ -33,9 +33,8 @@ public class TenantController {
 
     @PostMapping()
     public ResponseEntity<Tenant> createTenant(@RequestBody Tenant tenant){
-        
-        Tenant tenantCreate = tenantService.createTenant(tenant);
-        return ResponseEntity.status(HttpStatus.CREATED).body(tenantCreate);
+        //Tenant tenantCreate = tenantService.createTenant(tenant);
+        return ResponseEntity.status(HttpStatus.CREATED).body(tenant);
     }
 
 }
