@@ -13,5 +13,6 @@ public interface TenantService {
     public Tenant updateTenant(Tenant tenant);
     public Tenant deleteTenant(Tenant tenant);
 
-    public List<Tenant> findByTenant(String tenant);
+    public Tenant findByTenant(String tenant);
+    public Tenant findByDomain(String domain);
 }

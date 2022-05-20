@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import wwf.org.tenant.entity.Country;
 import wwf.org.tenant.entity.Tenant;
 import wwf.org.tenant.service.TenantService;
 
@@ -31,6 +32,33 @@ public class TenantController {
         return ResponseEntity.ok(tenants);
     }
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Tenant> getTenant(@PathVariable("id") Long id){
+        Tenant tenant = tenantService.getTenant(id);
+        if(null == tenant){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(tenant);
+    }
+
+    @GetMapping(value = "/tenant/{tenant}")
+    public ResponseEntity<Tenant> getByTenant(@PathVariable("tenant") String tenant){
+        Tenant tenantR = tenantService.findByTenant(tenant);
+        if(null == tenantR){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(tenantR);
+    }
+
+    @GetMapping(value = "/domain/{domain}")
+    public ResponseEntity<Tenant> getByDomain(@PathVariable("domain") String domain){
+        Tenant tenantR = tenantService.findByDomain(domain);
+        if(null == tenantR){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(tenantR);
+    }
+
     @PostMapping()
     public ResponseEntity<Tenant> createTenant(@Valid @RequestBody Tenant tenant, BindingResult result){
         if(result.hasErrors()){
@@ -39,6 +67,29 @@ public class TenantController {
 
         Tenant tenantCreate = tenantService.createTenant(tenant);
         return ResponseEntity.status(HttpStatus.CREATED).body(tenantCreate);
+    }
+
+    @PutMapping()
+    public ResponseEntity<Tenant> updateTenant(@Valid @RequestBody Tenant tenant, BindingResult result){
+
+        if(result.hasErrors()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
+        }
+
+        Tenant tenantDB = tenantService.updateTenant(tenant);
+        if(null == tenantDB){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(tenantDB);
+    }
+
+    @DeleteMapping()
+    public ResponseEntity<Tenant> deleteTenant(@RequestBody Tenant tenant){
+        Tenant tenantDB = tenantService.deleteTenant(tenant);
+        if(null == tenantDB){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(tenantDB);
     }
 
 }

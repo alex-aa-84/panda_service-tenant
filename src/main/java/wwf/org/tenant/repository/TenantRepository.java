@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface TenantRepository extends JpaRepository<Tenant, Long> {
 
-    public List<Tenant> findByTenant(String tenant);
+    public Tenant findByTenant(String tenant);
+    public Tenant findByDomain(String domain);
 
 }

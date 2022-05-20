@@ -28,6 +28,12 @@ public class TenantServiceImpl implements TenantService{
 
     @Override
     public Tenant createTenant(Tenant tenant) {
+        Tenant tenantDB = findByTenant(tenant.getTenant());
+
+        if(null == tenantDB){
+            return null;
+        }
+
         tenant.setStatus("CREATED");
         tenant.setCreation_date(new Date());
         tenant.setLast_update_date(new Date());
@@ -63,7 +69,12 @@ public class TenantServiceImpl implements TenantService{
     }
 
     @Override
-    public List<Tenant> findByTenant(String tenant) {
+    public Tenant findByTenant(String tenant) {
         return tenantRepository.findByTenant(tenant);
+    }
+
+    @Override
+    public Tenant findByDomain(String domain) {
+        return tenantRepository.findByDomain(domain);
     }
 }
