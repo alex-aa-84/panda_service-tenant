@@ -66,6 +66,10 @@ public class TenantController {
         }
 
         Tenant tenantCreate = tenantService.createTenant(tenant);
+
+        if(null == tenantCreate){
+            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, "ERROR");
+        }
         return ResponseEntity.status(HttpStatus.CREATED).body(tenantCreate);
     }
 
