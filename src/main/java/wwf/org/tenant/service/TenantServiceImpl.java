@@ -1,6 +1,7 @@
 package wwf.org.tenant.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wwf.org.tenant.entity.Tenant;
 import wwf.org.tenant.repository.TenantRepository;
@@ -12,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TenantServiceImpl implements TenantService{
 
+    @Autowired
     private TenantRepository tenantRepository;
 
     @Override
