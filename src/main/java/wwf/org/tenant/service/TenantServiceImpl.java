@@ -30,7 +30,7 @@ public class TenantServiceImpl implements TenantService{
     public Tenant createTenant(Tenant tenant) {
         Tenant tenantDB = findByTenant(tenant.getTenant());
 
-        if(null == tenantDB){
+        if(null != tenantDB){
             return null;
         }
 
