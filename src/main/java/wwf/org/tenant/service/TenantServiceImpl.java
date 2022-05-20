@@ -29,8 +29,9 @@ public class TenantServiceImpl implements TenantService{
     @Override
     public Tenant createTenant(Tenant tenant) {
         Tenant tenantDB = findByTenant(tenant.getTenant());
+        Tenant domainBD = findByDomain(tenant.getDomain());
 
-        if(null != tenantDB){
+        if(null != tenantDB || null != domainBD){
             return null;
         }
 

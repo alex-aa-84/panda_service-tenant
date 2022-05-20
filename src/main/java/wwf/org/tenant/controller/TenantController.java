@@ -68,7 +68,7 @@ public class TenantController {
         Tenant tenantCreate = tenantService.createTenant(tenant);
 
         if(null == tenantCreate){
-            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, "ERROR");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Tenant y/o Dominio existentes en la BD.");
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(tenantCreate);
     }
