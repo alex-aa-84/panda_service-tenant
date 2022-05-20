@@ -32,9 +32,13 @@ public class TenantController {
     }
 
     @PostMapping()
-    public ResponseEntity<Tenant> createTenant(@RequestBody Tenant tenant){
-        //Tenant tenantCreate = tenantService.createTenant(tenant);
-        return ResponseEntity.status(HttpStatus.CREATED).body(tenant);
+    public ResponseEntity<Tenant> createTenant(@Valid @RequestBody Tenant tenant, BindingResult result){
+        if(result.hasErrors()){
+            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
+        }
+
+        Tenant tenantCreate = tenantService.createTenant(tenant);
+        return ResponseEntity.status(HttpStatus.CREATED).body(tenantCreate);
     }
 
 }
