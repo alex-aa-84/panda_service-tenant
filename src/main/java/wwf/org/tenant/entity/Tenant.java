@@ -17,7 +17,6 @@ public class Tenant {
     private Long id;
 
     @NotEmpty(message = "The name of the tenant can not be empty")
-    @UniqueElements(message = "register dupplicated")
     @Column(unique = true, nullable = false)
     private String tenant;
 
