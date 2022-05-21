@@ -11,7 +11,7 @@ public interface TenantService {
 
     public Tenant createTenant(Tenant tenant);
     public Tenant updateTenant(Tenant tenant);
-    public Tenant deleteTenant(Tenant tenant);
+    public Tenant deleteTenant(Long id, Long user_id);
 
     public Tenant findByTenant(String tenant);
     public Tenant findByDomain(String domain);

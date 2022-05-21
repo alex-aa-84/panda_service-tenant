@@ -49,24 +49,31 @@ public class TenantServiceImpl implements TenantService{
             return null;
         }
 
-        tenant.setStatus("MODIFIED");
-        tenant.setLast_update_date(new Date());
+        tenantDB.setTenant(tenant.getTenant());
+        tenantDB.setDomain(tenant.getDomain());
+        tenantDB.setTenant_type(tenant.getTenant_type());
+        tenantDB.setOrganization(tenant.getOrganization());
+
+        tenantDB.setStatus("MODIFIED");
+        tenantDB.setLast_update_date(new Date());
+        tenantDB.setLast_update_by(tenant.getLast_update_by());
 
         return tenantRepository.save(tenant);
     }
 
     @Override
-    public Tenant deleteTenant(Tenant tenant) {
-        Tenant tenantDB = getTenant(tenant.getId());
+    public Tenant deleteTenant(Long id, Long user_id) {
+        Tenant tenantDB = getTenant(id);
 
         if(null == tenantDB){
             return null;
         }
 
-        tenant.setStatus("MODIFIED");
-        tenant.setLast_update_date(new Date());
+        tenantDB.setStatus("INACTIVO");
+        tenantDB.setLast_update_date(new Date());
+        tenantDB.setLast_update_by(user_id);
 
-        return tenantRepository.save(tenant);
+        return tenantRepository.save(tenantDB);
     }
 
     @Override

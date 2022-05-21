@@ -87,9 +87,9 @@ public class TenantController {
         return ResponseEntity.ok(tenantDB);
     }
 
-    @DeleteMapping()
-    public ResponseEntity<Tenant> deleteTenant(@RequestBody Tenant tenant){
-        Tenant tenantDB = tenantService.deleteTenant(tenant);
+    @DeleteMapping(value = "/{id}/{user_id}")
+    public ResponseEntity<Tenant> deleteTenant(@PathVariable("id") Long id, @PathVariable("user_id") Long user_id){
+        Tenant tenantDB = tenantService.deleteTenant(id, user_id);
         if(null == tenantDB){
             return ResponseEntity.notFound().build();
         }
