@@ -6,6 +6,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.List;
 
@@ -18,21 +19,26 @@ public class Submodule {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @NotEmpty(message = "The module can not be empty")
+    @Column(nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name="module_id", referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private List<Module> module_id;
+    private Module module_id;
 
+    @NotEmpty(message = "The submodule can not be empty")
     @Column(unique = true, nullable = false)
     private String submodule;
 
+    @NotEmpty(message = "The service url can not be empty")
+    @Column(unique = true, nullable = false)
+    private String service_url;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="service_id", referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private Service service_id;
+    private String service_language;
+    private String service_language_version;
+    private String service_git;
+
 
     @Temporal(TemporalType.DATE)
     private Date effective_date;

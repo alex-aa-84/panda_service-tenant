@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.List;
 
@@ -19,12 +20,16 @@ public class TenantModule {
     @Column(unique = true, nullable = false)
     private Long id;
 
+    @NotEmpty(message = "The tenant can not be empty")
+    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name="tenant_id", referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Tenant tenant_id;
 
+    @NotEmpty(message = "The module can not be empty")
+    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name="module_id", referencedColumnName = "id")

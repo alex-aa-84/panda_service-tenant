@@ -9,6 +9,8 @@ public interface UserService {
     public List<User> listAllUser();
     public User getUser(Long id);
 
+    public User findByOid_(String oid_);
+
     public User createUser(User user);
     public User updateUser(User user);
     public User deleteUser(User user);

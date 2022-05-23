@@ -27,6 +27,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public User findByOid_(String oid_) {
+        return userRepository.findByOid_(oid_);
+    }
+
+    @Override
     public User createUser(User user) {
         user.setStatus("CREATED");
         user.setCreation_date(new Date());

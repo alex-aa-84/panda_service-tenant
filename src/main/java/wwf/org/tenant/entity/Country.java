@@ -17,7 +17,7 @@ public class Country {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "The name of the country can not be empty")
+    @NotEmpty(message = "The country can not be empty")
     @Column(unique = true, nullable = false)
     private String country;
 

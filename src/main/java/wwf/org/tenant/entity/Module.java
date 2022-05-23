@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
@@ -17,6 +18,7 @@ public class Module {
     @Column(unique = true, nullable = false)
     private Long id;
 
+    @NotEmpty(message = "The module can not be empty")
     @Column(unique = true, nullable = false)
     private String module;
 

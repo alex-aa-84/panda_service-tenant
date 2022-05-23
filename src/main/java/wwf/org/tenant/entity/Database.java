@@ -1,10 +1,8 @@
 package wwf.org.tenant.entity;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
@@ -19,22 +17,27 @@ public class Database {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY,optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="tenant_id", referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private Tenant tenant_id;
-
+    @NotEmpty(message = "The db_connnection can not be empty")
     @Column(nullable = false)
     private String db_connection;
+
+    @NotEmpty(message = "The db_host can not be empty")
     @Column(nullable = false)
     private String db_host;
+
+    @NotEmpty(message = "The db_port can not be empty")
     @Column(nullable = false)
     private String db_port;
+
+    @NotEmpty(message = "The db_database can not be empty")
     @Column(nullable = false)
     private String db_database;
+
+    @NotEmpty(message = "The db_username can not be empty")
     @Column(nullable = false)
     private String db_username;
+
+    @NotEmpty(message = "The db_password can not be empty")
     @Column(nullable = false)
     private String db_password;
 

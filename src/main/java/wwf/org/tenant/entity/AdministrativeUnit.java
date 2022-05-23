@@ -3,6 +3,7 @@ package wwf.org.tenant.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
@@ -14,10 +15,12 @@ public class AdministrativeUnit {
     @Column(unique = true, nullable = false)
     private Long id;
 
+    @NotEmpty(message = "The unit administrative can not be empty")
     @Column(unique = true, nullable = false)
     private String administrative_unit;
 
     private String description;
+
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;

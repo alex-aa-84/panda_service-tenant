@@ -1,10 +1,9 @@
 package wwf.org.tenant.entity;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
@@ -19,22 +18,27 @@ public class EmailConfiguration {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY ,optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="tenant_id", referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private Tenant tenant_id;
-
+    @NotEmpty(message = "The email_host can not be empty")
     @Column(nullable = false)
     private String email_host;
+
+    @NotEmpty(message = "The email_username can not be empty")
     @Column(nullable = false)
     private String email_username;
+
+    @NotEmpty(message = "The email_password can not be empty")
     @Column(nullable = false)
     private String email_password;
+
+    @NotEmpty(message = "The email_port can not be empty")
     @Column(nullable = false)
     private String email_port;
+
+    @NotEmpty(message = "The email_from can not be empty")
     @Column(nullable = false)
     private String email_from;
+
+    @NotEmpty(message = "The email_from_name can not be empty")
     @Column(nullable = false)
     private String email_from_name;
 

@@ -1,6 +1,8 @@
 package wwf.org.tenant.entity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import org.hibernate.validator.constraints.UniqueElements;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -16,16 +18,45 @@ public class Tenant {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "The name of the tenant can not be empty")
+    @NotEmpty(message = "The tenant can not be empty")
     @Column(unique = true, nullable = false)
     private String tenant;
 
-    @NotEmpty(message = "The name of the domain can not be empty")
+    @NotEmpty(message = "The domain can not be empty")
     @Column(unique = true, nullable = false)
     private String domain;
 
     private String organization;
-    private String tenant_type;
+
+    @NotEmpty(message = "The department_wwf can not be empty")
+    @Column(unique = true, nullable = false)
+    private String department_wwf;
+
+    @NotEmpty(message = "The unit administrative can not be empty")
+    @Column(nullable = false)
+    @OneToOne(optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name="administrative_unit_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    AdministrativeUnit administrative_unit_id;
+
+    @OneToOne(optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name="country_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    Country country_id;
+
+    @OneToOne(optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name="database_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    Database database_id;
+
+    @OneToOne(optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name="email_configuration_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    EmailConfiguration email_configuration_id;
 
     private Integer attribute1;
     private Integer attribute2;

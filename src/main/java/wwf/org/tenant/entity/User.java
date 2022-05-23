@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
@@ -16,12 +17,15 @@ public class User {
     @Column(unique = true, nullable = false)
     private Long id;
 
+    @NotEmpty(message = "The tenant can not be empty")
+    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name="tenant_id", referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Tenant tenant_id;
 
+    @NotEmpty(message = "The OID can not be empty")
     @Column(unique = true, nullable = false)
     private String oid_;
 
@@ -30,17 +34,13 @@ public class User {
     private String surname;
     private String given_name;
 
-    @OneToOne(optional = false)
+    @NotEmpty(message = "The permissions can not be empty")
+    @Column(nullable = false)
+    @ManyToOne(optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name="permissions_tenant_id", referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     PermissionTenant permissions_tenant_id;
-
-    @OneToOne(optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="administrative_unit_id", referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    AdministrativeUnit administrative_unit_id;
 
     private Integer attribute1;
     private Integer attribute2;
