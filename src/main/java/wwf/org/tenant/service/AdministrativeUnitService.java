@@ -10,6 +10,6 @@ public interface AdministrativeUnitService {
     public List<AdministrativeUnit> listAllAdministrativeUnit();
     public AdministrativeUnit getAdministrativeUnit(Long id);
 
-    public AdministrativeUnit createCountry(AdministrativeUnit administrativeUnit);
-    public AdministrativeUnit updateCountry(AdministrativeUnit administrativeUnit);
+    public AdministrativeUnit createAdministrativeUnit(AdministrativeUnit administrativeUnit);
+    public AdministrativeUnit updateAdministrativeUnit(AdministrativeUnit administrativeUnit);
 }

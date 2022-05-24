@@ -6,13 +6,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import wwf.org.tenant.entity.Country;
 import wwf.org.tenant.entity.Tenant;
 import wwf.org.tenant.service.TenantService;
 
 import javax.validation.Valid;
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"${settings.cors_origin}"})
 @RestController
 @RequestMapping(value="/tenants")
 public class TenantController {
@@ -68,7 +67,7 @@ public class TenantController {
         Tenant tenantCreate = tenantService.createTenant(tenant);
 
         if(null == tenantCreate){
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Tenant y/o Dominio existentes en la BD.");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Inquilino y/o Dominio existente en la BD.");
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(tenantCreate);
     }
@@ -86,14 +85,4 @@ public class TenantController {
         }
         return ResponseEntity.ok(tenantDB);
     }
-
-    @DeleteMapping(value = "/{id}/{user_id}")
-    public ResponseEntity<Tenant> deleteTenant(@PathVariable("id") Long id, @PathVariable("user_id") Long user_id){
-        Tenant tenantDB = tenantService.deleteTenant(id, user_id);
-        if(null == tenantDB){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(tenantDB);
-    }
-
 }

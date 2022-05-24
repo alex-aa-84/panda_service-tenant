@@ -12,6 +12,7 @@ import wwf.org.tenant.service.CountryService;
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin(origins = {"${settings.cors_origin}"})
 @RestController
 @RequestMapping(value="/countrys")
 public class CountryController { 
@@ -41,12 +42,15 @@ public class CountryController {
 
     @PostMapping()
     public ResponseEntity<Country> createCountry(@Valid @RequestBody Country country, BindingResult result){
-
         if(result.hasErrors()){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
+            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        Country countryCreate =  countryService.createCountry(country);
+        Country countryCreate = countryService.createCountry(country);
+
+        if(null == countryCreate){
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Pais existente en la BD.");
+        }
         return ResponseEntity.status(HttpStatus.CREATED).body(countryCreate);
     }
 
@@ -58,15 +62,6 @@ public class CountryController {
         }
 
         Country countryDB = countryService.updateCountry(country);
-        if(null == countryDB){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(countryDB);
-    }
-
-    @DeleteMapping()
-    public ResponseEntity<Country> deleteCountry(@RequestBody Country country){
-        Country countryDB = countryService.deleteCountry(country);
         if(null == countryDB){
             return ResponseEntity.notFound().build();
         }

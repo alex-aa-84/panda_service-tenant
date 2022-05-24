@@ -27,7 +27,7 @@ public class AdministrativeUnitServiceImpl implements AdministrativeUnitService{
     }
 
     @Override
-    public AdministrativeUnit createCountry(AdministrativeUnit administrativeUnit) {
+    public AdministrativeUnit createAdministrativeUnit(AdministrativeUnit administrativeUnit) {
         administrativeUnit.setStatus("CREATED");
         administrativeUnit.setCreation_date(new Date());
         administrativeUnit.setLast_update_date(new Date());
@@ -36,7 +36,7 @@ public class AdministrativeUnitServiceImpl implements AdministrativeUnitService{
     }
 
     @Override
-    public AdministrativeUnit updateCountry(AdministrativeUnit administrativeUnit) {
+    public AdministrativeUnit updateAdministrativeUnit(AdministrativeUnit administrativeUnit) {
         AdministrativeUnit administrativeUnitDB = getAdministrativeUnit(administrativeUnit.getId());
 
         if(null == administrativeUnitDB){
