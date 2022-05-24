@@ -39,26 +39,21 @@ public class EmailConfigurationServiceImpl implements EmailConfigurationService 
     @Override
     public EmailConfiguration updateEmailConfiguration(EmailConfiguration email) {
         EmailConfiguration emailConfigurationDB = getEmailConfiguration(email.getId());
-        if(null == emailConfigurationRepository){
+        if(null == emailConfigurationDB){
             return null;
         }
 
-        email.setStatus("MODIFIED");
-        email.setLast_update_date(new Date());
+        emailConfigurationDB.setEmail_host(email.getEmail_host());
+        emailConfigurationDB.setEmail_username(email.getEmail_username());
+        emailConfigurationDB.setEmail_password(email.getEmail_password());
+        emailConfigurationDB.setEmail_port(email.getEmail_port());
+        emailConfigurationDB.setEmail_from(email.getEmail_from());
+        emailConfigurationDB.setEmail_from_name(email.getEmail_from_name());
 
-        return emailConfigurationRepository.save(email);
-    }
+        emailConfigurationDB.setStatus(email.getStatus());
+        emailConfigurationDB.setLast_update_date(new Date());
+        emailConfigurationDB.setLast_update_by(email.getLast_update_by());
 
-    @Override
-    public EmailConfiguration deleteEmailConfiguration(EmailConfiguration email) {
-        EmailConfiguration emailConfigurationDB = getEmailConfiguration(email.getId());
-        if(null == emailConfigurationRepository){
-            return null;
-        }
-
-        email.setStatus("DELETED");
-        email.setLast_update_date(new Date());
-
-        return emailConfigurationRepository.save(email);
+        return emailConfigurationRepository.save(emailConfigurationDB);
     }
 }

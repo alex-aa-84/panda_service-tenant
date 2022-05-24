@@ -11,6 +11,5 @@ public interface DatabaseService {
 
     public Database createDatabase(Database database);
     public Database updateDatabase(Database database);
-    public Database deleteDatabase(Database database);
 
 }

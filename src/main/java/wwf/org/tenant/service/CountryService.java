@@ -9,6 +9,5 @@ public interface CountryService {
     public Country getCountry(Long id);
     public Country createCountry(Country country);
     public Country updateCountry(Country country);
-    public Country deleteCountry(Country country);
 
 }

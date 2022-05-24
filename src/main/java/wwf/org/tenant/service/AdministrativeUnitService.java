@@ -12,5 +12,4 @@ public interface AdministrativeUnitService {
 
     public AdministrativeUnit createCountry(AdministrativeUnit administrativeUnit);
     public AdministrativeUnit updateCountry(AdministrativeUnit administrativeUnit);
-    public AdministrativeUnit deleteCountry(AdministrativeUnit administrativeUnit);
 }

@@ -38,27 +38,18 @@ public class AdministrativeUnitServiceImpl implements AdministrativeUnitService{
     @Override
     public AdministrativeUnit updateCountry(AdministrativeUnit administrativeUnit) {
         AdministrativeUnit administrativeUnitDB = getAdministrativeUnit(administrativeUnit.getId());
+
         if(null == administrativeUnitDB){
             return null;
         }
 
-        administrativeUnit.setStatus("MODIFIED");
-        administrativeUnit.setLast_update_date(new Date());
+        administrativeUnitDB.setAdministrative_unit(administrativeUnit.getAdministrative_unit());
+        administrativeUnitDB.setDescription(administrativeUnit.getDescription());
+        administrativeUnitDB.setStatus(administrativeUnit.getStatus());
+        administrativeUnitDB.setLast_update_date(new Date());
+        administrativeUnitDB.setLast_update_by(administrativeUnit.getLast_update_by());
 
-        return administrativeUnitRepository.save(administrativeUnit);
+        return administrativeUnitRepository.save(administrativeUnitDB);
 
-    }
-
-    @Override
-    public AdministrativeUnit deleteCountry(AdministrativeUnit administrativeUnit) {
-        AdministrativeUnit administrativeUnitDB = getAdministrativeUnit(administrativeUnit.getId());
-        if(null == administrativeUnitDB){
-            return null;
-        }
-
-        administrativeUnit.setStatus("DELETED");
-        administrativeUnit.setLast_update_date(new Date());
-
-        return administrativeUnitRepository.save(administrativeUnit);
     }
 }

@@ -11,5 +11,4 @@ public interface PermissionTenantService {
 
     public PermissionTenant createPermissionTenant(PermissionTenant permission);
     public PermissionTenant updatePermissionTenant(PermissionTenant permission);
-    public PermissionTenant deletePermissionTenant(PermissionTenant permission);
 }

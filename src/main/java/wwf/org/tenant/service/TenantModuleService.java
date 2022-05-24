@@ -11,5 +11,4 @@ public interface TenantModuleService {
 
     public TenantModule createTenantModule(TenantModule tenantModule);
     public TenantModule updateTenantModule(TenantModule tenantModule);
-    public TenantModule deleteTenantModule(TenantModule tenantModule);
 }

@@ -41,22 +41,12 @@ public class PermissionTenantServiceImpl implements PermissionTenantService{
             return null;
         }
 
-        permission.setStatus("MODIFIED");
-        permission.setLast_update_date((Timestamp) new Date());
+        permissionTenantDB.setPermissions(permission.getPermissions());
+        permissionTenantDB.setDescription(permission.getDescription());
+        permissionTenantDB.setStatus(permission.getStatus());
+        permissionTenantDB.setLast_update_date(new Date());
+        permissionTenantDB.setLast_update_by(permission.getLast_update_by());
 
-        return permissionTenantRepository.save(permission);
-    }
-
-    @Override
-    public PermissionTenant deletePermissionTenant(PermissionTenant permission) {
-        PermissionTenant permissionTenantDB = getPermissionTenant(permission.getId());
-        if(null == permissionTenantDB){
-            return null;
-        }
-
-        permission.setStatus("DELETED");
-        permission.setLast_update_date((Timestamp) new Date());
-
-        return permissionTenantRepository.save(permission);
+        return permissionTenantRepository.save(permissionTenantDB);
     }
 }

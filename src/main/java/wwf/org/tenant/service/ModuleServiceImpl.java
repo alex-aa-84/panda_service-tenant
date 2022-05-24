@@ -42,22 +42,13 @@ public class ModuleServiceImpl implements ModuleService {
             return null;
         }
 
-        module.setStatus("MODIFIED");
-        module.setLast_update_date(new Date());
+        moduleDB.setModule(module.getModule());
+        moduleDB.setEffective_date(module.getEffective_date());
+        moduleDB.setDescription(module.getDescription());
+        moduleDB.setStatus(module.getStatus());
+        moduleDB.setLast_update_date(new Date());
+        moduleDB.setLast_update_by(module.getLast_update_by());
 
-        return moduleRepository.save(module);
-    }
-
-    @Override
-    public Module deleteModule(Module module) {
-        Module moduleDB = getModule(module.getId());
-        if(null == moduleDB){
-            return null;
-        }
-
-        module.setStatus("DELETED");
-        module.setLast_update_date(new Date());
-
-        return moduleRepository.save(module);
+        return moduleRepository.save(moduleDB);
     }
 }

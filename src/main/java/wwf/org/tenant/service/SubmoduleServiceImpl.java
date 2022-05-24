@@ -42,21 +42,19 @@ public class SubmoduleServiceImpl implements SubmoduleService{
         if(null == submoduleDB){
             return null;
         }
-        submodule.setStatus("MODIFIED");
-        submodule.setLast_update_date(new Date());
 
-        return submoduleRepository.save(submodule);
-    }
+        submoduleDB.setModule_id(submodule.getModule_id());
+        submoduleDB.setSubmodule(submodule.getSubmodule());
+        submoduleDB.setService_url(submodule.getService_url());
+        submoduleDB.setService_language(submodule.getService_language());
+        submoduleDB.setService_language_version(submodule.getService_language_version());
+        submoduleDB.setService_git(submodule.getService_git());
+        submoduleDB.setEffective_date(submodule.getEffective_date());
+        submoduleDB.setDescription(submodule.getDescription());
+        submoduleDB.setStatus(submodule.getStatus());
+        submoduleDB.setLast_update_date(new Date());
+        submoduleDB.setLast_update_by(submodule.getLast_update_by());
 
-    @Override
-    public Submodule deleteSubmodule(Submodule submodule) {
-        Submodule submoduleDB = getSubmodule(submodule.getId());
-        if(null == submoduleDB){
-            return null;
-        }
-        submodule.setStatus("DELETED");
-        submodule.setLast_update_date(new Date());
-
-        return submoduleRepository.save(submodule);
+        return submoduleRepository.save(submoduleDB);
     }
 }

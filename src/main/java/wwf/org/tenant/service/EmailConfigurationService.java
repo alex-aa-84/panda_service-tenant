@@ -11,5 +11,4 @@ public interface EmailConfigurationService {
 
     public EmailConfiguration createEmailConfiguration(EmailConfiguration email);
     public EmailConfiguration updateEmailConfiguration(EmailConfiguration email);
-    public EmailConfiguration deleteEmailConfiguration(EmailConfiguration email);
 }

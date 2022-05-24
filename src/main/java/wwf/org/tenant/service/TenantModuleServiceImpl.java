@@ -40,19 +40,14 @@ public class TenantModuleServiceImpl implements TenantModuleService{
         if(null == tenantModuleDB){
             return null;
         }
-        tenantModule.setStatus("MODIFIED");
-        tenantModule.setLast_update_date(new Date());
-        return tenantModuleRepository.save(tenantModule);
-    }
 
-    @Override
-    public TenantModule deleteTenantModule(TenantModule tenantModule) {
-        TenantModule tenantModuleDB = getTenantModule(tenantModule.getId());
-        if(null == tenantModuleDB){
-            return null;
-        }
-        tenantModule.setStatus("DELETED");
-        tenantModule.setLast_update_date(new Date());
-        return tenantModuleRepository.save(tenantModule);
+        tenantModuleDB.setTenant_id(tenantModule.getTenant_id());
+        tenantModuleDB.setModule_id(tenantModule.getModule_id());
+        tenantModuleDB.setEffective_date(tenantModule.getEffective_date());
+        tenantModuleDB.setDescription(tenantModule.getDescription());
+        tenantModuleDB.setStatus(tenantModule.getStatus());
+        tenantModuleDB.setLast_update_date(new Date());
+        tenantModuleDB.setLast_update_by(tenantModule.getLast_update_by());
+        return tenantModuleRepository.save(tenantModuleDB);
     }
 }

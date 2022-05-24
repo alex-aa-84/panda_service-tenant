@@ -10,5 +10,4 @@ public interface SubmoduleService {
 
     public Submodule createSubmodule(Submodule submodule);
     public Submodule updateSubmodule(Submodule submodule);
-    public Submodule deleteSubmodule(Submodule submodule);
 }

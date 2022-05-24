@@ -62,7 +62,7 @@ public class TenantServiceImpl implements TenantService{
         tenantDB.setLast_update_date(new Date());
         tenantDB.setLast_update_by(tenant.getLast_update_by());
 
-        return tenantRepository.save(tenant);
+        return tenantRepository.save(tenantDB);
     }
 
     @Override

@@ -41,20 +41,17 @@ public class DatabaseServiceImpl implements DatabaseService{
             return null;
         }
 
-        database.setStatus("MODIFIED");
-        database.setLast_update_date(new Date());
-        return databaseRepository.save(database);
-    }
+        databaseDB.setDb_connection(database.getDb_connection());
+        databaseDB.setDb_host(databaseDB.getDb_host());
+        databaseDB.setDb_port(databaseDB.getDb_port());
+        databaseDB.setDb_database(database.getDb_database());
+        databaseDB.setDb_username(database.getDb_username());
+        databaseDB.setDb_password(database.getDb_password());
 
-    @Override
-    public Database deleteDatabase(Database database) {
-        Database databaseDB = getDatabase(database.getId());
-        if(null == databaseDB){
-            return null;
-        }
+        databaseDB.setStatus(database.getStatus());
+        databaseDB.setLast_update_date(new Date());
+        databaseDB.setLast_update_by(database.getLast_update_by());
 
-        database.setStatus("DELETED");
-        database.setLast_update_date(new Date());
-        return databaseRepository.save(database);
+        return databaseRepository.save(databaseDB);
     }
 }

@@ -11,5 +11,4 @@ public interface ModuleService {
 
     public Module createModule(Module module);
     public Module updateModule(Module module);
-    public Module deleteModule(Module module);
 }

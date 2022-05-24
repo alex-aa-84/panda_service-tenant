@@ -45,21 +45,19 @@ public class UserServiceImpl implements UserService{
         if(null == userDB){
             return null;
         }
-        user.setStatus("MODIFIED");
-        user.setLast_update_date(new Date());
 
-        return userRepository.save(user);
-    }
+        userDB.setTenant_id(user.getTenant_id());
+        userDB.setOid_(user.getOid_());
+        userDB.setUser_principal_name(user.getUser_principal_name());
+        userDB.setDisplay_name(user.getDisplay_name());
+        userDB.setSurname(user.getSurname());
+        userDB.setGiven_name(user.getGiven_name());
+        userDB.setPermissions_tenant_id(user.getPermissions_tenant_id());
 
-    @Override
-    public User deleteUser(User user) {
-        User userDB = getUser(user.getId());
-        if(null == userDB){
-            return null;
-        }
-        user.setStatus("DELETED");
-        user.setLast_update_date(new Date());
+        userDB.setStatus(user.getStatus());
+        userDB.setLast_update_date(new Date());
+        userDB.setLast_update_by(user.getLast_update_by());
 
-        return userRepository.save(user);
+        return userRepository.save(userDB);
     }
 }

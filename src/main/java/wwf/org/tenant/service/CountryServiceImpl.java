@@ -42,20 +42,12 @@ public class CountryServiceImpl implements CountryService{
             return null;
         }
 
-        country.setStatus("MODIFIED");
-        country.setLast_update_date(new Date());
-        return countryRepository.save(country);
-    }
+        countryDB.setCountry(country.getCountry());
+        countryDB.setDescription(country.getDescription());
+        countryDB.setStatus(country.getStatus());
+        countryDB.setLast_update_date(new Date());
+        countryDB.setLast_update_by(country.getLast_update_by());
 
-    @Override
-    public Country deleteCountry(Country country) {
-        Country countryDB = getCountry(country.getId());
-        if(null == countryDB){
-            return null;
-        }
-
-        country.setStatus("DELETED");
-        country.setLast_update_date(new Date());
-        return countryRepository.save(country);
+        return countryRepository.save(countryDB);
     }
 }
