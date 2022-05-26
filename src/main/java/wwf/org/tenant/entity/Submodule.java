@@ -8,7 +8,6 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "tn_submodules")
@@ -20,10 +19,9 @@ public class Submodule {
     private Long id;
 
     @NotEmpty(message = "The module can not be empty")
-    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="module_id", referencedColumnName = "id")
+    @JoinColumn(name="module_id", nullable = false, referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Module module_id;
 

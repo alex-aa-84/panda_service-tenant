@@ -1,8 +1,5 @@
 package wwf.org.tenant.entity;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -26,6 +23,13 @@ public class Module {
     private Date effective_date;
 
     private String description;
+
+    @Lob
+    private byte[] imagen;
+
+    private String router_link;
+
+
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;

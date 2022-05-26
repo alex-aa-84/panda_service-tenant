@@ -8,4 +8,5 @@ spring:
     config:
       username: ${EUR_USER}
       password: ${EUR_PASS}
+settings:
   cors_origin: http://localhost:4200

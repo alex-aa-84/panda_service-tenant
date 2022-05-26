@@ -17,7 +17,6 @@ public class EmailConfiguration {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
-
     @NotEmpty(message = "The email_host can not be empty")
     @Column(nullable = false)
     private String email_host;

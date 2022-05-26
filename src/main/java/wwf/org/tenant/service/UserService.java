@@ -9,7 +9,7 @@ public interface UserService {
     public List<User> listAllUser();
     public User getUser(Long id);
 
-    public User findByOid_(String oid_);
+    public User findByOid(String oid);
 
     public User createUser(User user);
     public User updateUser(User user);

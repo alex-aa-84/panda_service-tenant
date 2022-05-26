@@ -4,4 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import wwf.org.tenant.entity.Submodule;
 
 public interface SubmoduleRepository extends JpaRepository<Submodule, Long> {
+
 }

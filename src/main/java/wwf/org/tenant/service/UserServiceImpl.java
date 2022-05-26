@@ -27,8 +27,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User findByOid_(String oid_) {
-        return userRepository.findByOid_(oid_);
+    public User findByOid(String oid) {
+        return userRepository.findByOid(oid);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService{
         }
 
         userDB.setTenant_id(user.getTenant_id());
-        userDB.setOid_(user.getOid_());
+        userDB.setOid(user.getOid());
         userDB.setUser_principal_name(user.getUser_principal_name());
         userDB.setDisplay_name(user.getDisplay_name());
         userDB.setSurname(user.getSurname());
