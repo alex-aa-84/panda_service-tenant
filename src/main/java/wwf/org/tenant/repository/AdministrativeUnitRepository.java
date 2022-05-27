@@ -4,4 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import wwf.org.tenant.entity.AdministrativeUnit;
 
 public interface AdministrativeUnitRepository extends JpaRepository<AdministrativeUnit, Long> {
+    public AdministrativeUnit findByAdministrative_unit(String administrative_unit);
 }

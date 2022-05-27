@@ -44,16 +44,18 @@ public class AdministrativeUnitController {
 
     @PostMapping()
     public ResponseEntity<AdministrativeUnit> createAdministrativeUnit(@Valid @RequestBody AdministrativeUnit administrativeUnit, BindingResult result){
+
+        AdministrativeUnit administrativeUnitBD = administrativeUnitService.findByAdministrative_unit(administrativeUnit.getAdministrative_unit());
+
         if(result.hasErrors()){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        AdministrativeUnit administrativeUnitCreate = administrativeUnitService.createAdministrativeUnit(administrativeUnit);
-
-        if(null == administrativeUnitCreate){
+        if (null != administrativeUnitBD){
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Unidad Administrativa existentes en la BD.");
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(administrativeUnitCreate);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(administrativeUnitService.createAdministrativeUnit(administrativeUnit));
     }
 
     @PutMapping()

@@ -27,6 +27,11 @@ public class AdministrativeUnitServiceImpl implements AdministrativeUnitService{
     }
 
     @Override
+    public AdministrativeUnit findByAdministrative_unit(String administrative_unit) {
+        return administrativeUnitRepository.findByAdministrative_unit(administrative_unit);
+    }
+
+    @Override
     public AdministrativeUnit createAdministrativeUnit(AdministrativeUnit administrativeUnit) {
         administrativeUnit.setStatus("CREATED");
         administrativeUnit.setCreation_date(new Date());
