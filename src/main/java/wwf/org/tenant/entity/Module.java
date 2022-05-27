@@ -15,12 +15,12 @@ public class Module {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "The module can not be empty")
+    @NotEmpty(message = "modulo_vacio")
     @Column(unique = true, nullable = false)
     private String module;
 
     @Temporal(TemporalType.DATE)
-    private Date effective_date;
+    private Date effectiveDate;
 
     private String description;
 

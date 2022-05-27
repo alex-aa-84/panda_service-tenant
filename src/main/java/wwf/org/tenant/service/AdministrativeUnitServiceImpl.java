@@ -27,8 +27,8 @@ public class AdministrativeUnitServiceImpl implements AdministrativeUnitService{
     }
 
     @Override
-    public AdministrativeUnit findByAdministrative_unit(String administrative_unit) {
-        return administrativeUnitRepository.findByAdministrative_unit(administrative_unit);
+    public AdministrativeUnit findByAdministrativeUnit(String administrative_unit) {
+        return administrativeUnitRepository.findByAdministrativeUnit(administrative_unit);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class AdministrativeUnitServiceImpl implements AdministrativeUnitService{
             return null;
         }
 
-        administrativeUnitDB.setAdministrative_unit(administrativeUnit.getAdministrative_unit());
+        administrativeUnitDB.setAdministrativeUnit(administrativeUnit.getAdministrativeUnit());
         administrativeUnitDB.setDescription(administrativeUnit.getDescription());
         administrativeUnitDB.setStatus(administrativeUnit.getStatus());
         administrativeUnitDB.setLast_update_date(new Date());

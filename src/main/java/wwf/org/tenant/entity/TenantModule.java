@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="tn_tenant_modules", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"tenant_id", "module_id"})
+        @UniqueConstraint(columnNames = {"tenantId", "moduleId"})
 })
 @Data
 public class TenantModule {
@@ -19,22 +19,22 @@ public class TenantModule {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "The tenant can not be empty")
+    @NotEmpty(message = "inquilino_vacio")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="tenant_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name="tenantId", nullable = false, referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private Tenant tenant_id;
+    private Tenant tenantId;
 
-    @NotEmpty(message = "The module can not be empty")
+    @NotEmpty(message = "modulo_Vacio")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="module_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name="moduleId", nullable = false, referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private Module module_id;
+    private Module moduleId;
 
     @Temporal(TemporalType.DATE)
-    private Date effective_date;
+    private Date effectiveDate;
 
     private String description;
 

@@ -52,11 +52,11 @@ public class TenantServiceImpl implements TenantService{
         tenantDB.setTenant(tenant.getTenant());
         tenantDB.setDomain(tenant.getDomain());
         tenantDB.setOrganization(tenant.getOrganization());
-        tenantDB.setDepartment_wwf(tenant.getDepartment_wwf());
-        tenantDB.setAdministrative_unit_id(tenant.getAdministrative_unit_id());
-        tenantDB.setCountry_id(tenant.getCountry_id());
-        tenantDB.setDatabase_id(tenant.getDatabase_id());
-        tenantDB.setEmail_configuration_id(tenant.getEmail_configuration_id());
+        tenantDB.setDepartmentWwf(tenant.getDepartmentWwf());
+        tenantDB.setAdministrativeUnitId(tenant.getAdministrativeUnitId());
+        tenantDB.setCountryId(tenant.getCountryId());
+        tenantDB.setDatabaseId(tenant.getDatabaseId());
+        tenantDB.setEmailConfigurationId(tenant.getEmailConfigurationId());
 
         tenantDB.setStatus(tenant.getStatus());
         tenantDB.setLast_update_date(new Date());

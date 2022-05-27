@@ -45,7 +45,7 @@ public class AdministrativeUnitController {
     @PostMapping()
     public ResponseEntity<AdministrativeUnit> createAdministrativeUnit(@Valid @RequestBody AdministrativeUnit administrativeUnit, BindingResult result){
 
-        AdministrativeUnit administrativeUnitBD = administrativeUnitService.findByAdministrative_unit(administrativeUnit.getAdministrative_unit());
+        AdministrativeUnit administrativeUnitBD = administrativeUnitService.findByAdministrativeUnit(administrativeUnit.getAdministrativeUnit());
 
         if(result.hasErrors()){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));

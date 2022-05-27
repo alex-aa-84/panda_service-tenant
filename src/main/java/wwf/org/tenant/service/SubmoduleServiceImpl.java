@@ -43,13 +43,13 @@ public class SubmoduleServiceImpl implements SubmoduleService{
             return null;
         }
 
-        submoduleDB.setModule_id(submodule.getModule_id());
+        submoduleDB.setModuleId(submodule.getModuleId());
         submoduleDB.setSubmodule(submodule.getSubmodule());
-        submoduleDB.setService_url(submodule.getService_url());
-        submoduleDB.setService_language(submodule.getService_language());
-        submoduleDB.setService_language_version(submodule.getService_language_version());
-        submoduleDB.setService_git(submodule.getService_git());
-        submoduleDB.setEffective_date(submodule.getEffective_date());
+        submoduleDB.setServiceUrl(submodule.getServiceUrl());
+        submoduleDB.setServiceLanguage(submodule.getServiceLanguage());
+        submoduleDB.setServiceLanguageVersion(submodule.getServiceLanguageVersion());
+        submoduleDB.setServiceGit(submodule.getServiceGit());
+        submoduleDB.setEffectiveDate(submodule.getEffectiveDate());
         submoduleDB.setDescription(submodule.getDescription());
         submoduleDB.setStatus(submodule.getStatus());
         submoduleDB.setLast_update_date(new Date());

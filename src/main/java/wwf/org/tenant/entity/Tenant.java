@@ -16,40 +16,40 @@ public class Tenant {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "The tenant can not be empty")
+    @NotEmpty(message = "inquilino_vacio")
     @Column(unique = true, nullable = false)
     private String tenant;
 
-    @NotEmpty(message = "The domain can not be empty")
+    @NotEmpty(message = "domicilio_vacio")
     @Column(unique = true, nullable = false)
     private String domain;
 
     private String organization;
 
-    @NotEmpty(message = "The department_wwf can not be empty")
+    @NotEmpty(message = "departamento_wwf_vacio")
     @Column(unique = true, nullable = false)
-    private String department_wwf;
+    private String departmentWwf;
 
-    @NotEmpty(message = "The unit administrative can not be empty")
+    @NotEmpty(message = "unidad_administrativa_vacia")
     @OneToOne(optional = false)
-    @JoinColumn(name="administrative_unit_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name="administrativeUnitId", nullable = false, referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    AdministrativeUnit administrative_unit_id;
-
-    @OneToOne(optional = false)
-    @JoinColumn(name="country_id", referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    Country country_id;
+    AdministrativeUnit administrativeUnitId;
 
     @OneToOne(optional = false)
-    @JoinColumn(name="database_id", referencedColumnName = "id")
+    @JoinColumn(name="countryId", referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    Database database_id;
+    Country countryId;
 
     @OneToOne(optional = false)
-    @JoinColumn(name="email_configuration_id", referencedColumnName = "id")
+    @JoinColumn(name="databaseId", referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    EmailConfiguration email_configuration_id;
+    Database databaseId;
+
+    @OneToOne(optional = false)
+    @JoinColumn(name="emailConfigurationId", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    EmailConfiguration emailConfigurationId;
 
     private Integer attribute1;
     private Integer attribute2;

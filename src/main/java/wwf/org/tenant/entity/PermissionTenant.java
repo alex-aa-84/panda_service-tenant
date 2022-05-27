@@ -15,7 +15,7 @@ public class PermissionTenant {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "The permissions can not be empty")
+    @NotEmpty(message = "permisos_inquilino_vacio")
     @Column(unique = true, nullable = false)
     private String permissions;
 

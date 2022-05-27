@@ -17,27 +17,27 @@ public class User {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "The tenant can not be empty")
+    @NotEmpty(message = "inquilino_vacio")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="tenant_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name="tenantId", nullable = false, referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private Tenant tenant_id;
+    private Tenant tenantId;
 
-    @NotEmpty(message = "The OID can not be empty")
+    @NotEmpty(message = "oid_vacio")
     @Column(unique = true, nullable = false)
     private String oid;
 
-    private String user_principal_name;
-    private String display_name;
+    private String userPrincipalName;
+    private String displayName;
     private String surname;
-    private String given_name;
+    private String givenName;
 
-    @NotEmpty(message = "The permissions can not be empty")
+    @NotEmpty(message = "permisos_inquilino_vacio")
     @ManyToOne(optional = false)
-    @JoinColumn(name="permissions_tenant_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name="permissionsTenantId", nullable = false, referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    PermissionTenant permissions_tenant_id;
+    PermissionTenant permissionsTenantId;
 
     private Integer attribute1;
     private Integer attribute2;

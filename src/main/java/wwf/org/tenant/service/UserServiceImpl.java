@@ -46,13 +46,13 @@ public class UserServiceImpl implements UserService{
             return null;
         }
 
-        userDB.setTenant_id(user.getTenant_id());
+        userDB.setTenantId(user.getTenantId());
         userDB.setOid(user.getOid());
-        userDB.setUser_principal_name(user.getUser_principal_name());
-        userDB.setDisplay_name(user.getDisplay_name());
+        userDB.setUserPrincipalName(user.getUserPrincipalName());
+        userDB.setDisplayName(user.getDisplayName());
         userDB.setSurname(user.getSurname());
-        userDB.setGiven_name(user.getGiven_name());
-        userDB.setPermissions_tenant_id(user.getPermissions_tenant_id());
+        userDB.setGivenName(user.getGivenName());
+        userDB.setPermissionsTenantId(user.getPermissionsTenantId());
 
         userDB.setStatus(user.getStatus());
         userDB.setLast_update_date(new Date());

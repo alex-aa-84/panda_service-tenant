@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="tn_databases", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"db_connection", "db_host", "db_port", "db_database"})
+        @UniqueConstraint(columnNames = {"dbConnection", "dbHost", "dbPort", "dbDatabase"})
 })
 @Data
 public class Database {
@@ -17,29 +17,29 @@ public class Database {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "The db_connnection can not be empty")
+    @NotEmpty(message = "dbConnection_vacio")
     @Column(nullable = false)
-    private String db_connection;
+    private String dbConnection;
 
-    @NotEmpty(message = "The db_host can not be empty")
+    @NotEmpty(message = "dbhost_vacio")
     @Column(nullable = false)
-    private String db_host;
+    private String dbHost;
 
-    @NotEmpty(message = "The db_port can not be empty")
+    @NotEmpty(message = "dbport_vacio")
     @Column(nullable = false)
-    private String db_port;
+    private String dbPort;
 
-    @NotEmpty(message = "The db_database can not be empty")
+    @NotEmpty(message = "dbdatabase_vacio")
     @Column(nullable = false)
-    private String db_database;
+    private String dbDatabase;
 
-    @NotEmpty(message = "The db_username can not be empty")
+    @NotEmpty(message = "dbusername_vacio")
     @Column(nullable = false)
-    private String db_username;
+    private String dbUsername;
 
-    @NotEmpty(message = "The db_password can not be empty")
+    @NotEmpty(message = "password_vacio")
     @Column(nullable = false)
-    private String db_password;
+    private String dbPassword;
 
     private Integer attribute1;
     private Integer attribute2;

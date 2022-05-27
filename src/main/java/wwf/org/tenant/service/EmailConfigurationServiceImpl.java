@@ -43,12 +43,12 @@ public class EmailConfigurationServiceImpl implements EmailConfigurationService 
             return null;
         }
 
-        emailConfigurationDB.setEmail_host(email.getEmail_host());
-        emailConfigurationDB.setEmail_username(email.getEmail_username());
-        emailConfigurationDB.setEmail_password(email.getEmail_password());
-        emailConfigurationDB.setEmail_port(email.getEmail_port());
-        emailConfigurationDB.setEmail_from(email.getEmail_from());
-        emailConfigurationDB.setEmail_from_name(email.getEmail_from_name());
+        emailConfigurationDB.setEmailHost(email.getEmailHost());
+        emailConfigurationDB.setEmailUsername(email.getEmailUsername());
+        emailConfigurationDB.setEmailPassword(email.getEmailPassword());
+        emailConfigurationDB.setEmailPort(email.getEmailPort());
+        emailConfigurationDB.setEmailFrom(email.getEmailFrom());
+        emailConfigurationDB.setEmailFromName(email.getEmailFromName());
 
         emailConfigurationDB.setStatus(email.getStatus());
         emailConfigurationDB.setLast_update_date(new Date());

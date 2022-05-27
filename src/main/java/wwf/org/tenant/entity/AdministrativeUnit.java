@@ -17,7 +17,7 @@ public class AdministrativeUnit {
 
     @NotEmpty(message = "unidad_administrativa_vacia")
     @Column(unique = true, nullable = false)
-    private String administrative_unit;
+    private String administrativeUnit;
 
     private String description;
 

@@ -43,7 +43,7 @@ public class ModuleServiceImpl implements ModuleService {
         }
 
         moduleDB.setModule(module.getModule());
-        moduleDB.setEffective_date(module.getEffective_date());
+        moduleDB.setEffectiveDate(module.getEffectiveDate());
         moduleDB.setDescription(module.getDescription());
         moduleDB.setStatus(module.getStatus());
         moduleDB.setLast_update_date(new Date());

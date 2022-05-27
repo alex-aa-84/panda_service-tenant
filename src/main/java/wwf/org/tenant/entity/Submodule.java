@@ -18,28 +18,28 @@ public class Submodule {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "The module can not be empty")
+    @NotEmpty(message = "modulo_vacio")
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="module_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name="moduleId", nullable = false, referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private Module module_id;
+    private Module moduleId;
 
-    @NotEmpty(message = "The submodule can not be empty")
+    @NotEmpty(message = "submodulo_vacio")
     @Column(unique = true, nullable = false)
     private String submodule;
 
-    @NotEmpty(message = "The service url can not be empty")
+    @NotEmpty(message = "servicio_vacio")
     @Column(unique = true, nullable = false)
-    private String service_url;
+    private String serviceUrl;
 
-    private String service_language;
-    private String service_language_version;
-    private String service_git;
+    private String serviceLanguage;
+    private String serviceLanguageVersion;
+    private String serviceGit;
 
 
     @Temporal(TemporalType.DATE)
-    private Date effective_date;
+    private Date effectiveDate;
 
     private String description;
 

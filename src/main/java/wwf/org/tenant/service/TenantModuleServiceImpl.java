@@ -41,9 +41,9 @@ public class TenantModuleServiceImpl implements TenantModuleService{
             return null;
         }
 
-        tenantModuleDB.setTenant_id(tenantModule.getTenant_id());
-        tenantModuleDB.setModule_id(tenantModule.getModule_id());
-        tenantModuleDB.setEffective_date(tenantModule.getEffective_date());
+        tenantModuleDB.setTenantId(tenantModule.getTenantId());
+        tenantModuleDB.setModuleId(tenantModule.getModuleId());
+        tenantModuleDB.setEffectiveDate(tenantModule.getEffectiveDate());
         tenantModuleDB.setDescription(tenantModule.getDescription());
         tenantModuleDB.setStatus(tenantModule.getStatus());
         tenantModuleDB.setLast_update_date(new Date());

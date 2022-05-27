@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="tn_emails_configuration", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"email_host", "email_username", "email_port", "email_from"})
+        @UniqueConstraint(columnNames = {"emailHost", "emailUsername", "emailPort", "emailFrom"})
 })
 @Data
 public class EmailConfiguration {
@@ -17,29 +17,29 @@ public class EmailConfiguration {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
-    @NotEmpty(message = "The email_host can not be empty")
+    @NotEmpty(message = "email_host_vacio")
     @Column(nullable = false)
-    private String email_host;
+    private String emailHost;
 
-    @NotEmpty(message = "The email_username can not be empty")
+    @NotEmpty(message = "email_username_vacio")
     @Column(nullable = false)
-    private String email_username;
+    private String emailUsername;
 
-    @NotEmpty(message = "The email_password can not be empty")
+    @NotEmpty(message = "email_password_vacio")
     @Column(nullable = false)
-    private String email_password;
+    private String emailPassword;
 
-    @NotEmpty(message = "The email_port can not be empty")
+    @NotEmpty(message = "email_port_vacio")
     @Column(nullable = false)
-    private String email_port;
+    private String emailPort;
 
-    @NotEmpty(message = "The email_from can not be empty")
+    @NotEmpty(message = "email_from_vacio")
     @Column(nullable = false)
-    private String email_from;
+    private String emailFrom;
 
-    @NotEmpty(message = "The email_from_name can not be empty")
+    @NotEmpty(message = "email_from_name_vacio")
     @Column(nullable = false)
-    private String email_from_name;
+    private String emailFromName;
 
     private Integer attribute1;
     private Integer attribute2;

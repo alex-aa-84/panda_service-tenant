@@ -41,12 +41,12 @@ public class DatabaseServiceImpl implements DatabaseService{
             return null;
         }
 
-        databaseDB.setDb_connection(database.getDb_connection());
-        databaseDB.setDb_host(databaseDB.getDb_host());
-        databaseDB.setDb_port(databaseDB.getDb_port());
-        databaseDB.setDb_database(database.getDb_database());
-        databaseDB.setDb_username(database.getDb_username());
-        databaseDB.setDb_password(database.getDb_password());
+        databaseDB.setDbConnection(database.getDbConnection());
+        databaseDB.setDbHost(databaseDB.getDbHost());
+        databaseDB.setDbPort(databaseDB.getDbPort());
+        databaseDB.setDbDatabase(database.getDbDatabase());
+        databaseDB.setDbUsername(database.getDbUsername());
+        databaseDB.setDbPassword(database.getDbPassword());
 
         databaseDB.setStatus(database.getStatus());
         databaseDB.setLast_update_date(new Date());
