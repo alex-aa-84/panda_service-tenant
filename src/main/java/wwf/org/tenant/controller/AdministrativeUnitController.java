@@ -3,7 +3,10 @@ package wwf.org.tenant.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import wwf.org.tenant.entity.AdministrativeUnit;
@@ -47,13 +50,13 @@ public class AdministrativeUnitController {
 
         AdministrativeUnit administrativeUnitBD = administrativeUnitService.findByAdministrativeUnit(administrativeUnit.getAdministrativeUnit());
 
-        if(result.hasErrors()){
-            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
+        if (null != administrativeUnitBD){
+            FieldError err = new FieldError("Error", "administrativeUnit", "unidad_administrativa_existente");
+            result.addError(err);
         }
 
-        if (null != administrativeUnitBD){
-            //throw new ResponseStatusException(HttpStatus.CONFLICT, "unidad_administrativa_existente");
-            throw new ResponseStatusException(HttpStatus.CONFLICT, administrativeUnitBD);
+        if(result.hasErrors()){
+            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(administrativeUnitService.createAdministrativeUnit(administrativeUnit));
@@ -62,15 +65,22 @@ public class AdministrativeUnitController {
     @PutMapping()
     public ResponseEntity<AdministrativeUnit> updateAdministrativeUnit(@Valid @RequestBody AdministrativeUnit administrativeUnit, BindingResult result){
 
+        AdministrativeUnit administrativeUnitBD = administrativeUnitService.findByAdministrativeUnit(administrativeUnit.getAdministrativeUnit());
+
+        if (null != administrativeUnitBD){
+            FieldError err = new FieldError("Error", "administrativeUnit", "unidad_administrativa_existente");
+            result.addError(err);
+        }
+
         if(result.hasErrors()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        AdministrativeUnit administrativeUnitDB = administrativeUnitService.updateAdministrativeUnit(administrativeUnit);
-        if(null == administrativeUnitDB){
+        AdministrativeUnit administrativeUnitUpdate = administrativeUnitService.updateAdministrativeUnit(administrativeUnit);
+        if(null == administrativeUnitUpdate){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(administrativeUnitDB);
+        return ResponseEntity.ok(administrativeUnitUpdate);
     }
 
 
