@@ -52,7 +52,7 @@ public class AdministrativeUnitController {
         }
 
         if (null != administrativeUnitBD){
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Unidad Administrativa existentes en la BD.");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "unidad_administrativa_existente");
         }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(administrativeUnitService.createAdministrativeUnit(administrativeUnit));
