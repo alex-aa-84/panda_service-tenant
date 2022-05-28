@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import wwf.org.tenant.entity.PermissionTenant;
@@ -43,16 +44,18 @@ public class PermissionTenantController {
 
     @PostMapping()
     public ResponseEntity<PermissionTenant> createPermissionTenant(@Valid @RequestBody PermissionTenant permissionTenant, BindingResult result){
+        PermissionTenant permissionBD = permissionTenantService.findByPermissions(permissionTenant.getPermissions());
+
+        if (null != permissionBD){
+            FieldError err = new FieldError("Error", "permissionTenant", "permiso_existente");
+            result.addError(err);
+        }
+
         if(result.hasErrors()){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        PermissionTenant permissionTenantCreate = permissionTenantService.createPermissionTenant(permissionTenant);
-        if(null == permissionTenantCreate) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Permiso existente en la BD.");
-        }
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(permissionTenantCreate);
+        return ResponseEntity.status(HttpStatus.CREATED).body(permissionTenantService.createPermissionTenant(permissionTenant));
     }
 
     @PutMapping()
@@ -66,5 +69,18 @@ public class PermissionTenantController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(permissionTenantDB);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Boolean> deletePermissionTenant(@PathVariable("id") Long id){
+
+        Boolean action = permissionTenantService.deletePermissionTenant(id);
+
+        if ( action){
+            return ResponseEntity.ok(action);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+
     }
 }

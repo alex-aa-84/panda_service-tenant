@@ -50,4 +50,21 @@ public class CountryServiceImpl implements CountryService{
 
         return countryRepository.save(countryDB);
     }
+
+    @Override
+    public Country findByCountry(String country) {
+        return countryRepository.findByCountry(country);
+    }
+
+    @Override
+    public Boolean deleteCountry(Long id) {
+        Country countryDB = getCountry(id);
+
+        if(null == countryDB){
+            return false;
+        }
+
+        countryRepository.deleteById(id);
+        return true;
+    }
 }

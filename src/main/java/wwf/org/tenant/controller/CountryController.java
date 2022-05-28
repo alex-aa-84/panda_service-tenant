@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import wwf.org.tenant.entity.Country;
@@ -42,16 +43,18 @@ public class CountryController {
 
     @PostMapping()
     public ResponseEntity<Country> createCountry(@Valid @RequestBody Country country, BindingResult result){
+        Country countryBD = countryService.findByCountry(country.getCountry());
+
+        if (null != countryBD){
+            FieldError err = new FieldError("Error", "country", "pais_existente");
+            result.addError(err);
+        }
+
         if(result.hasErrors()){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        Country countryCreate = countryService.createCountry(country);
-
-        if(null == countryCreate){
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Pais existente en la BD.");
-        }
-        return ResponseEntity.status(HttpStatus.CREATED).body(countryCreate);
+        return ResponseEntity.status(HttpStatus.CREATED).body(countryService.createCountry(country));
     }
 
     @PutMapping()
@@ -66,6 +69,19 @@ public class CountryController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(countryDB);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Boolean> deleteCountry(@PathVariable("id") Long id){
+
+        Boolean action = countryService.deleteCountry(id);
+
+        if ( action){
+            return ResponseEntity.ok(action);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
 }

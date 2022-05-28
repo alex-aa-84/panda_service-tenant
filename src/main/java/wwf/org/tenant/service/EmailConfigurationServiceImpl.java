@@ -56,4 +56,21 @@ public class EmailConfigurationServiceImpl implements EmailConfigurationService 
 
         return emailConfigurationRepository.save(emailConfigurationDB);
     }
+
+    @Override
+    public EmailConfiguration findByEmailHostAndEmailUsernameAndEmailPortAndEmailFrom(String emailHost, String emailUsername, String emailPort, String emailFrom) {
+        return emailConfigurationRepository.findByEmailHostAndEmailUsernameAndEmailPortAndEmailFrom(emailHost, emailUsername, emailPort, emailFrom);
+    }
+
+    @Override
+    public Boolean deleteEmailConfiguration(Long id) {
+        EmailConfiguration emailConfigurationDB = getEmailConfiguration(id);
+
+        if(null == emailConfigurationDB){
+            return false;
+        }
+
+        emailConfigurationRepository.deleteById(id);
+        return true;
+    }
 }

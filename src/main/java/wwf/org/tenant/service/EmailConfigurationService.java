@@ -11,4 +11,8 @@ public interface EmailConfigurationService {
 
     public EmailConfiguration createEmailConfiguration(EmailConfiguration email);
     public EmailConfiguration updateEmailConfiguration(EmailConfiguration email);
+
+    public EmailConfiguration findByEmailHostAndEmailUsernameAndEmailPortAndEmailFrom(String emailHost, String emailUsername, String emailPort, String emailFrom);
+
+    public Boolean deleteEmailConfiguration(Long id);
 }

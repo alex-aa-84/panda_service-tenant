@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import wwf.org.tenant.entity.EmailConfiguration;
@@ -43,16 +44,18 @@ public class EmailConfigurationController {
 
     @PostMapping()
     public ResponseEntity<EmailConfiguration> createEmailConfiguration(@Valid @RequestBody EmailConfiguration emailConfiguration, BindingResult result){
+        EmailConfiguration emailConfigurationBD = emailConfigurationService.findByEmailHostAndEmailUsernameAndEmailPortAndEmailFrom(emailConfiguration.getEmailHost(), emailConfiguration.getEmailUsername(), emailConfiguration.getEmailPort(), emailConfiguration.getEmailFrom());
+
+        if (null != emailConfigurationBD){
+            FieldError err = new FieldError("Error", "emailConfiguration", "email_configuracion_existente");
+            result.addError(err);
+        }
+
         if(result.hasErrors()){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        EmailConfiguration emailConfigurationCreate = emailConfigurationService.createEmailConfiguration(emailConfiguration);
-        if(null == emailConfigurationCreate) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Configuración de email existente en la BD.");
-        }
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(emailConfigurationCreate);
+        return ResponseEntity.status(HttpStatus.CREATED).body(emailConfigurationService.createEmailConfiguration(emailConfiguration));
     }
 
     @PutMapping()
@@ -66,5 +69,18 @@ public class EmailConfigurationController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(emailConfigurationDB);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Boolean> deleteEmailConfiguration(@PathVariable("id") Long id){
+
+        Boolean action = emailConfigurationService.deleteEmailConfiguration(id);
+
+        if ( action){
+            return ResponseEntity.ok(action);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+
     }
 }

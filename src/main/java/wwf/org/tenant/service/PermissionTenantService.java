@@ -11,4 +11,7 @@ public interface PermissionTenantService {
 
     public PermissionTenant createPermissionTenant(PermissionTenant permission);
     public PermissionTenant updatePermissionTenant(PermissionTenant permission);
+
+    public PermissionTenant findByPermissions(String permissions);
+    public Boolean deletePermissionTenant(Long id);
 }

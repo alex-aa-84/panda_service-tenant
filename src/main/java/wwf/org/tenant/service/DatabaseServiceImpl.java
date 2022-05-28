@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import wwf.org.tenant.entity.Database;
 import wwf.org.tenant.repository.DatabaseRepository;
 
+import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.List;
 
@@ -53,5 +54,22 @@ public class DatabaseServiceImpl implements DatabaseService{
         databaseDB.setLast_update_by(database.getLast_update_by());
 
         return databaseRepository.save(databaseDB);
+    }
+
+    @Override
+    public Data findByDbDatabase(String dbDatabase) {
+        return databaseRepository.findByDbDatabase(dbDatabase);
+    }
+
+    @Override
+    public Boolean deleteDatabase(Long id) {
+        Database dataBaseDB = getDatabase(id);
+
+        if(null == dataBaseDB){
+            return false;
+        }
+
+        databaseRepository.deleteById(id);
+        return true;
     }
 }

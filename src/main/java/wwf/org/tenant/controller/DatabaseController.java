@@ -4,12 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import wwf.org.tenant.entity.Database;
 import wwf.org.tenant.service.DatabaseService;
 
 import javax.validation.Valid;
+import javax.xml.crypto.Data;
 import java.util.List;
 
 @CrossOrigin(origins = {"${settings.cors_origin}"})
@@ -43,16 +45,18 @@ public class DatabaseController {
 
     @PostMapping()
     public ResponseEntity<Database> createDatabase(@Valid @RequestBody Database database, BindingResult result){
+        Data dataBaseBD = databaseService.findByDbDatabase(database.getDbDatabase());
+
+        if (null != dataBaseBD){
+            FieldError err = new FieldError("Error", "dataBase", "base_datos_existente");
+            result.addError(err);
+        }
+
         if(result.hasErrors()){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        Database databaseCreate = databaseService.createDatabase(database);
-        if(null == databaseCreate) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Base de datos existente en la BD.");
-        }
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(databaseCreate);
+        return ResponseEntity.status(HttpStatus.CREATED).body(databaseService.createDatabase(database));
     }
 
     @PutMapping()
@@ -66,5 +70,18 @@ public class DatabaseController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(databaseDB);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Boolean> deleteDatabase(@PathVariable("id") Long id){
+
+        Boolean action = databaseService.deleteDatabase(id);
+
+        if ( action){
+            return ResponseEntity.ok(action);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+
     }
 }

@@ -10,4 +10,7 @@ public interface CountryService {
     public Country createCountry(Country country);
     public Country updateCountry(Country country);
 
+    public Country findByCountry(String country);
+    public Boolean deleteCountry(Long id);
+
 }
