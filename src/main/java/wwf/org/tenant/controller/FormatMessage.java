@@ -16,7 +16,8 @@ public class FormatMessage {
         List<Map<String, String>> errors = result.getFieldErrors().stream()
                 .map(err ->{
                     Map<String, String> error = new HashMap<>();
-                    error.put(err.getField(), err.getDefaultMessage());
+                    //error.put("err.getField()", err.getDefaultMessage());
+                    error.put("message", err.getDefaultMessage());
                     return error;
                 }).collect(Collectors.toList());
 
