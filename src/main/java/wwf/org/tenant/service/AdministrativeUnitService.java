@@ -12,4 +12,6 @@ public interface AdministrativeUnitService {
     public AdministrativeUnit findByAdministrativeUnit(String administrative_unit);
     public AdministrativeUnit createAdministrativeUnit(AdministrativeUnit administrativeUnit);
     public AdministrativeUnit updateAdministrativeUnit(AdministrativeUnit administrativeUnit);
+
+    public Boolean deleteAdministrativeUni(AdministrativeUnit administrativeUnit);
 }

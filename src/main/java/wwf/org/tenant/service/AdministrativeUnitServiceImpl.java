@@ -57,4 +57,17 @@ public class AdministrativeUnitServiceImpl implements AdministrativeUnitService{
         return administrativeUnitRepository.save(administrativeUnitDB);
 
     }
+
+    @Override
+    public Boolean deleteAdministrativeUni(AdministrativeUnit administrativeUnit) {
+        AdministrativeUnit administrativeUnitDB = getAdministrativeUnit(administrativeUnit.getId());
+
+        if(null == administrativeUnitDB){
+            return false;
+        }
+
+        administrativeUnitRepository.delete(administrativeUnitDB);
+        return true;
+
+    }
 }
