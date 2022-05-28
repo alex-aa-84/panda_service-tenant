@@ -13,5 +13,5 @@ public interface AdministrativeUnitService {
     public AdministrativeUnit createAdministrativeUnit(AdministrativeUnit administrativeUnit);
     public AdministrativeUnit updateAdministrativeUnit(AdministrativeUnit administrativeUnit);
 
-    public Boolean deleteAdministrativeUni(AdministrativeUnit administrativeUnit);
+    public Boolean deleteAdministrativeUni(Long id);
 }

@@ -59,14 +59,14 @@ public class AdministrativeUnitServiceImpl implements AdministrativeUnitService{
     }
 
     @Override
-    public Boolean deleteAdministrativeUni(AdministrativeUnit administrativeUnit) {
-        AdministrativeUnit administrativeUnitDB = getAdministrativeUnit(administrativeUnit.getId());
+    public Boolean deleteAdministrativeUni(Long id) {
+        AdministrativeUnit administrativeUnitDB = getAdministrativeUnit(id);
 
         if(null == administrativeUnitDB){
             return false;
         }
 
-        administrativeUnitRepository.delete(administrativeUnitDB);
+        administrativeUnitRepository.deleteById(id);
         return true;
 
     }
