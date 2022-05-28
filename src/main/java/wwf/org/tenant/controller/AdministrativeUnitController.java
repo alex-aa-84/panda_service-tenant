@@ -65,13 +65,6 @@ public class AdministrativeUnitController {
     @PutMapping()
     public ResponseEntity<AdministrativeUnit> updateAdministrativeUnit(@Valid @RequestBody AdministrativeUnit administrativeUnit, BindingResult result){
 
-        AdministrativeUnit administrativeUnitBD = administrativeUnitService.findByAdministrativeUnit(administrativeUnit.getAdministrativeUnit());
-
-        if (null != administrativeUnitBD){
-            FieldError err = new FieldError("Error", "administrativeUnit", "unidad_administrativa_existente");
-            result.addError(err);
-        }
-
         if(result.hasErrors()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
