@@ -59,7 +59,7 @@ public class AdministrativeUnitServiceImpl implements AdministrativeUnitService{
     }
 
     @Override
-    public Boolean deleteAdministrativeUni(Long id) {
+    public Boolean deleteAdministrativeUnit(Long id) {
         AdministrativeUnit administrativeUnitDB = getAdministrativeUnit(id);
 
         if(null == administrativeUnitDB){

@@ -77,12 +77,9 @@ public class AdministrativeUnitController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Boolean> deleteAdministrativeUnit(@PathVariable("id") Long id, BindingResult result){
-        if(result.hasErrors()){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
-        }
+    public ResponseEntity<Boolean> deleteAdministrativeUnit(@PathVariable("id") Long id){
 
-        Boolean action = administrativeUnitService.deleteAdministrativeUni(id);
+        Boolean action = administrativeUnitService.deleteAdministrativeUnit(id);
 
         if ( action){
             return ResponseEntity.ok(action);
