@@ -24,7 +24,9 @@ public class Module {
     @Lob
     private byte[] imagen;
 
-    private String router_link;
+    @NotEmpty(message = "router_link_vacio")
+    @Column(unique = true, nullable = false)
+    private String routerLink;
 
     @NotEmpty(message = "servicio_vacio")
     @Column(unique = true, nullable = false)
