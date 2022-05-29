@@ -51,7 +51,7 @@ public class ModuleServiceImpl implements ModuleService {
         moduleDB.setModule(module.getModule());
         moduleDB.setDescription(module.getDescription());
         moduleDB.setImagen(module.getImagen());
-        moduleDB.setRouter_link(module.getRouter_link());
+        moduleDB.setRouterLink(module.getRouterLink());
         moduleDB.setServiceUrl(module.getServiceUrl());
         moduleDB.setServiceLanguage(module.getServiceLanguage());
         moduleDB.setServiceLanguageVersion(module.getServiceLanguageVersion());
