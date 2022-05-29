@@ -17,27 +17,27 @@ public class Database {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "dbConnection_vacio")
+    @NotEmpty(message = "db_connection_vacio")
     @Column(nullable = false)
     private String dbConnection;
 
-    @NotEmpty(message = "dbhost_vacio")
+    @NotEmpty(message = "db_host_vacio")
     @Column(nullable = false)
     private String dbHost;
 
-    @NotEmpty(message = "dbport_vacio")
+    @NotEmpty(message = "db_port_vacio")
     @Column(nullable = false)
     private String dbPort;
 
-    @NotEmpty(message = "dbdatabase_vacio")
+    @NotEmpty(message = "db_database_vacio")
     @Column(nullable = false)
     private String dbDatabase;
 
-    @NotEmpty(message = "dbusername_vacio")
+    @NotEmpty(message = "db_username_vacio")
     @Column(nullable = false)
     private String dbUsername;
 
-    @NotEmpty(message = "password_vacio")
+    @NotEmpty(message = "db_password_vacio")
     @Column(nullable = false)
     private String dbPassword;
 

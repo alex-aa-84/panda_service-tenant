@@ -30,8 +30,8 @@ public class PermissionTenantServiceImpl implements PermissionTenantService{
     @Override
     public PermissionTenant createPermissionTenant(PermissionTenant permission) {
         permission.setStatus("CREATED");
-        permission.setCreation_date((Timestamp) new Date());
-        permission.setLast_update_date((Timestamp) new Date());
+        permission.setCreation_date(new Date());
+        permission.setLast_update_date(new Date());
 
         return permissionTenantRepository.save(permission);
     }
