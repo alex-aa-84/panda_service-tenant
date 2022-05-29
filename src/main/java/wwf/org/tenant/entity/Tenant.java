@@ -41,16 +41,6 @@ public class Tenant {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     Country countryId;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name="databaseId", referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    Database databaseId;
-
-    @OneToOne(optional = false)
-    @JoinColumn(name="emailConfigurationId", referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    EmailConfiguration emailConfigurationId;
-
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;

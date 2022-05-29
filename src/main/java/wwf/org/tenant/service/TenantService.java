@@ -10,8 +10,11 @@ public interface TenantService {
     public Tenant getTenant(Long id);
 
     public Tenant createTenant(Tenant tenant);
-    public Tenant updateTenant(Tenant tenant);
 
     public Tenant findByTenant(String tenant);
     public Tenant findByDomain(String domain);
+    public Tenant updateTenant(Tenant tenant);
+
+    public Boolean deleTenant(Long id);
+
 }

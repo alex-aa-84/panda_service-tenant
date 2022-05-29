@@ -10,5 +10,9 @@ public interface TenantModuleService {
     public TenantModule getTenantModule(Long id);
 
     public TenantModule createTenantModule(TenantModule tenantModule);
+
+    public TenantModule findByTenantIdAndModuleId(Long tenant_id, Long module_id);
     public TenantModule updateTenantModule(TenantModule tenantModule);
+
+    public Boolean deleTenantModule(Long id);
 }

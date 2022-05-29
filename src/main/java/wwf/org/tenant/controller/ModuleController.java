@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import wwf.org.tenant.entity.AdministrativeUnit;
 import wwf.org.tenant.entity.Module;
 import wwf.org.tenant.service.ModuleService;
 
@@ -43,16 +45,18 @@ public class ModuleController {
 
     @PostMapping()
     public ResponseEntity<Module> createModule(@Valid @RequestBody Module module, BindingResult result){
+        Module moduleBD = moduleService.findByModule(module.getModule());
+
+        if (null != moduleBD){
+            FieldError err = new FieldError("Error", "module", "Modulo existente en la BD");
+            result.addError(err);
+        }
+
         if(result.hasErrors()){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        Module moduleCreate = moduleService.createModule(module);
-        if(null == moduleCreate) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Modulo existente en la BD.");
-        }
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(moduleCreate);
+        return ResponseEntity.status(HttpStatus.CREATED).body(moduleService.createModule(module));
     }
 
     @PutMapping()
@@ -67,4 +71,18 @@ public class ModuleController {
         }
         return ResponseEntity.ok(moduleDB);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Boolean> deleteModule(@PathVariable("id") Long id){
+
+        Boolean action = moduleService.deleteModule(id);
+
+        if ( action){
+            return ResponseEntity.ok(action);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+
+    }
+
 }

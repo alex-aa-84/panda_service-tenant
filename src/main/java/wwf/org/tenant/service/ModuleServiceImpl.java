@@ -3,6 +3,7 @@ package wwf.org.tenant.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import wwf.org.tenant.entity.AdministrativeUnit;
 import wwf.org.tenant.entity.Module;
 import wwf.org.tenant.repository.ModuleRepository;
 
@@ -36,6 +37,11 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     @Override
+    public Module findByModule(String module) {
+        return moduleRepository.findByModule(module);
+    }
+
+    @Override
     public Module updateModule(Module module) {
         Module moduleDB = getModule(module.getId());
         if(null == moduleDB){
@@ -43,12 +49,30 @@ public class ModuleServiceImpl implements ModuleService {
         }
 
         moduleDB.setModule(module.getModule());
-        moduleDB.setEffectiveDate(module.getEffectiveDate());
         moduleDB.setDescription(module.getDescription());
+        moduleDB.setImagen(module.getImagen());
+        moduleDB.setRouter_link(module.getRouter_link());
+        moduleDB.setServiceUrl(module.getServiceUrl());
+        moduleDB.setServiceLanguage(module.getServiceLanguage());
+        moduleDB.setServiceLanguageVersion(module.getServiceLanguageVersion());
+        moduleDB.setServiceGit(module.getServiceGit());
+
         moduleDB.setStatus(module.getStatus());
         moduleDB.setLast_update_date(new Date());
         moduleDB.setLast_update_by(module.getLast_update_by());
 
         return moduleRepository.save(moduleDB);
+    }
+
+    @Override
+    public Boolean deleteModule(Long id) {
+        Module moduleDB = getModule(id);
+
+        if(null == moduleDB){
+            return false;
+        }
+
+        moduleRepository.deleteById(id);
+        return true;
     }
 }

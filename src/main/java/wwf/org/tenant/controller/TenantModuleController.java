@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import wwf.org.tenant.entity.Tenant;
 import wwf.org.tenant.entity.TenantModule;
 import wwf.org.tenant.service.TenantModuleService;
 
@@ -43,16 +45,18 @@ public class TenantModuleController {
 
     @PostMapping()
     public ResponseEntity<TenantModule> createTenantModule(@Valid @RequestBody TenantModule tenantModule, BindingResult result){
+        TenantModule tenantModuleBD = tenantModuleService.findByTenantIdAndModuleId(tenantModule.getTenantId().getId(), tenantModule.getModuleId().getId());
+
+        if (null != tenantModuleBD){
+            FieldError err = new FieldError("Error", "module", "modulo_existente");
+            result.addError(err);
+        }
+
         if(result.hasErrors()){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        TenantModule tenantModuleCreate = tenantModuleService.createTenantModule(tenantModule);
-        if(null == tenantModuleCreate) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "El Modulo ya existente en el inquilino.");
-        }
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(tenantModuleCreate);
+        return ResponseEntity.status(HttpStatus.CREATED).body(tenantModuleService.createTenantModule(tenantModule));
     }
 
     @PutMapping()
@@ -66,5 +70,18 @@ public class TenantModuleController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(tenantModuleDB);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Boolean> deleteTenantModule(@PathVariable("id") Long id){
+
+        Boolean action = tenantModuleService.deleTenantModule(id);
+
+        if ( action){
+            return ResponseEntity.ok(action);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+
     }
 }

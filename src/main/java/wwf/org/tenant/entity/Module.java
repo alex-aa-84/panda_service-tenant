@@ -19,9 +19,6 @@ public class Module {
     @Column(unique = true, nullable = false)
     private String module;
 
-    @Temporal(TemporalType.DATE)
-    private Date effectiveDate;
-
     private String description;
 
     @Lob
@@ -29,6 +26,13 @@ public class Module {
 
     private String router_link;
 
+    @NotEmpty(message = "servicio_vacio")
+    @Column(unique = true, nullable = false)
+    private String serviceUrl;
+
+    private String serviceLanguage;
+    private String serviceLanguageVersion;
+    private String serviceGit;
 
     private Integer attribute1;
     private Integer attribute2;

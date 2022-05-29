@@ -1,5 +1,6 @@
 package wwf.org.tenant.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,9 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
-@Table(name="tn_emails_configuration", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"emailHost", "emailUsername", "emailPort", "emailFrom"})
-})
+@Table(name="tn_emails_configuration")
 @Data
 public class EmailConfiguration {
 
@@ -17,6 +16,12 @@ public class EmailConfiguration {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
+
+    @OneToOne(optional = false)
+    @JoinColumn(name="tenantId", unique = true, referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    private Tenant tenantId;
+
     @NotEmpty(message = "email_host_vacio")
     @Column(nullable = false)
     private String emailHost;

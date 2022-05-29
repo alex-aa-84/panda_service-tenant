@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import wwf.org.tenant.entity.AdministrativeUnit;
 import wwf.org.tenant.entity.Tenant;
 import wwf.org.tenant.service.TenantService;
 
@@ -60,16 +62,20 @@ public class TenantController {
 
     @PostMapping()
     public ResponseEntity<Tenant> createTenant(@Valid @RequestBody Tenant tenant, BindingResult result){
+
+        Tenant tenantBD = tenantService.findByTenant(tenant.getTenant());
+
+        if (null != tenantBD){
+            FieldError err = new FieldError("Error", "inquilino", "inquilino_existente");
+            result.addError(err);
+        }
+
         if(result.hasErrors()){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        Tenant tenantCreate = tenantService.createTenant(tenant);
+        return ResponseEntity.status(HttpStatus.CREATED).body(tenantService.createTenant(tenant));
 
-        if(null == tenantCreate){
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Inquilino y/o Dominio existente en la BD.");
-        }
-        return ResponseEntity.status(HttpStatus.CREATED).body(tenantCreate);
     }
 
     @PutMapping()
@@ -84,5 +90,18 @@ public class TenantController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(tenantDB);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Boolean> deleteTenant(@PathVariable("id") Long id){
+
+        Boolean action = tenantService.deleTenant(id);
+
+        if ( action){
+            return ResponseEntity.ok(action);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+
     }
 }

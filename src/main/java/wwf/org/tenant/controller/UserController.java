@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import wwf.org.tenant.entity.TenantModule;
 import wwf.org.tenant.entity.User;
 import wwf.org.tenant.service.UserService;
 
@@ -43,16 +45,18 @@ public class UserController {
 
     @PostMapping()
     public ResponseEntity<User> createUser(@Valid @RequestBody User user, BindingResult result){
+        User userBD = userService.findByOid(user.getOid());
+
+        if (null != userBD){
+            FieldError err = new FieldError("Error", "users", "usuario_existente");
+            result.addError(err);
+        }
+
         if(result.hasErrors()){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        User userCreate = userService.createUser(user);
-        if(null == userCreate) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Usuario existente en la BD.");
-        }
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(userCreate);
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user));
     }
 
     @PutMapping()
@@ -66,5 +70,18 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(userDB);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Boolean> deleteUser(@PathVariable("id") Long id){
+
+        Boolean action = userService.deleteUser(id);
+
+        if ( action){
+            return ResponseEntity.ok(action);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+
     }
 }

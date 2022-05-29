@@ -15,7 +15,6 @@ public class TenantServiceImpl implements TenantService{
 
     @Autowired
     private TenantRepository tenantRepository;
-
     @Override
     public List<Tenant> listAllTenant() {
         return tenantRepository.findAll();
@@ -28,41 +27,10 @@ public class TenantServiceImpl implements TenantService{
 
     @Override
     public Tenant createTenant(Tenant tenant) {
-        Tenant tenantDB = findByTenant(tenant.getTenant());
-        Tenant domainBD = findByDomain(tenant.getDomain());
-
-        if(null != tenantDB || null != domainBD){
-            return null;
-        }
-
         tenant.setStatus("CREATED");
         tenant.setCreation_date(new Date());
         tenant.setLast_update_date(new Date());
         return tenantRepository.save(tenant);
-    }
-
-    @Override
-    public Tenant updateTenant(Tenant tenant) {
-        Tenant tenantDB = getTenant(tenant.getId());
-
-        if(null == tenantDB){
-            return null;
-        }
-
-        tenantDB.setTenant(tenant.getTenant());
-        tenantDB.setDomain(tenant.getDomain());
-        tenantDB.setOrganization(tenant.getOrganization());
-        tenantDB.setDepartmentWwf(tenant.getDepartmentWwf());
-        tenantDB.setAdministrativeUnitId(tenant.getAdministrativeUnitId());
-        tenantDB.setCountryId(tenant.getCountryId());
-        tenantDB.setDatabaseId(tenant.getDatabaseId());
-        tenantDB.setEmailConfigurationId(tenant.getEmailConfigurationId());
-
-        tenantDB.setStatus(tenant.getStatus());
-        tenantDB.setLast_update_date(new Date());
-        tenantDB.setLast_update_by(tenant.getLast_update_by());
-
-        return tenantRepository.save(tenantDB);
     }
 
     @Override
@@ -73,5 +41,37 @@ public class TenantServiceImpl implements TenantService{
     @Override
     public Tenant findByDomain(String domain) {
         return tenantRepository.findByDomain(domain);
+    }
+
+    @Override
+    public Tenant updateTenant(Tenant tenant) {
+        Tenant tenantDB = getTenant(tenant.getId());
+        if(null == tenantDB){
+            return null;
+        }
+
+        tenantDB.setTenant(tenant.getTenant());
+        tenantDB.setDomain(tenant.getDomain());
+        tenantDB.setOrganization(tenant.getOrganization());
+        tenantDB.setDepartmentWwf(tenant.getDepartmentWwf());
+        tenantDB.setAdministrativeUnitId(tenant.getAdministrativeUnitId());
+        tenantDB.setCountryId(tenant.getCountryId());
+
+        tenantDB.setStatus(tenant.getStatus());
+        tenantDB.setLast_update_date(new Date());
+        tenantDB.setLast_update_by(tenant.getLast_update_by());
+        return tenantRepository.save(tenantDB);
+    }
+
+    @Override
+    public Boolean deleTenant(Long id) {
+        Tenant tenantDB = getTenant(id);
+
+        if(null == tenantDB){
+            return false;
+        }
+
+        tenantRepository.deleteById(id);
+        return true;
     }
 }

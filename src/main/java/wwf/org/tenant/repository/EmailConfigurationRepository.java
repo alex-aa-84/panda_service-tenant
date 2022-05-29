@@ -6,6 +6,6 @@ import wwf.org.tenant.entity.EmailConfiguration;
 
 public interface EmailConfigurationRepository extends JpaRepository<EmailConfiguration, Long> {
 
-    public EmailConfiguration findByEmailHostAndEmailUsernameAndEmailPortAndEmailFrom(String emailHost, String emailUsername, String emailPort, String emailFrom);
+    public EmailConfiguration findByTenantId(Long tenandId);
 
 }

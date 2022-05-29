@@ -12,7 +12,7 @@ public interface EmailConfigurationService {
     public EmailConfiguration createEmailConfiguration(EmailConfiguration email);
     public EmailConfiguration updateEmailConfiguration(EmailConfiguration email);
 
-    public EmailConfiguration findByEmailHostAndEmailUsernameAndEmailPortAndEmailFrom(String emailHost, String emailUsername, String emailPort, String emailFrom);
+    public EmailConfiguration findByTenantId(Long tenant_id);
 
     public Boolean deleteEmailConfiguration(Long id);
 }

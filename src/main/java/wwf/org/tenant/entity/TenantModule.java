@@ -33,11 +33,6 @@ public class TenantModule {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Module moduleId;
 
-    @Temporal(TemporalType.DATE)
-    private Date effectiveDate;
-
-    private String description;
-
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;

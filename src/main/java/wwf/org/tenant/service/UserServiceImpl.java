@@ -3,6 +3,7 @@ package wwf.org.tenant.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import wwf.org.tenant.entity.TenantModule;
 import wwf.org.tenant.entity.User;
 import wwf.org.tenant.repository.UserRepository;
 
@@ -59,5 +60,17 @@ public class UserServiceImpl implements UserService{
         userDB.setLast_update_by(user.getLast_update_by());
 
         return userRepository.save(userDB);
+    }
+
+    @Override
+    public Boolean deleteUser(Long id) {
+        User userDB = getUser(id);
+
+        if(null == userDB){
+            return false;
+        }
+
+        userRepository.deleteById(id);
+        return true;
     }
 }

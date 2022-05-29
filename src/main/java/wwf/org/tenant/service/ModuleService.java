@@ -10,5 +10,9 @@ public interface ModuleService {
     public Module getModule(Long id);
 
     public Module createModule(Module module);
+
+    public Module findByModule(String module);
     public Module updateModule(Module module);
+
+    public Boolean deleteModule(Long id);
 }

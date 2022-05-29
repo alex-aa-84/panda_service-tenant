@@ -43,6 +43,7 @@ public class EmailConfigurationServiceImpl implements EmailConfigurationService 
             return null;
         }
 
+        emailConfigurationDB.setTenantId(email.getTenantId());
         emailConfigurationDB.setEmailHost(email.getEmailHost());
         emailConfigurationDB.setEmailUsername(email.getEmailUsername());
         emailConfigurationDB.setEmailPassword(email.getEmailPassword());
@@ -58,8 +59,8 @@ public class EmailConfigurationServiceImpl implements EmailConfigurationService 
     }
 
     @Override
-    public EmailConfiguration findByEmailHostAndEmailUsernameAndEmailPortAndEmailFrom(String emailHost, String emailUsername, String emailPort, String emailFrom) {
-        return emailConfigurationRepository.findByEmailHostAndEmailUsernameAndEmailPortAndEmailFrom(emailHost, emailUsername, emailPort, emailFrom);
+    public EmailConfiguration findByTenantId(Long tenant_id) {
+        return emailConfigurationRepository.findByTenantId(tenant_id);
     }
 
     @Override

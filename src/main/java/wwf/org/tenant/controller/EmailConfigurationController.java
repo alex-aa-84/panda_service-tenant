@@ -44,7 +44,7 @@ public class EmailConfigurationController {
 
     @PostMapping()
     public ResponseEntity<EmailConfiguration> createEmailConfiguration(@Valid @RequestBody EmailConfiguration emailConfiguration, BindingResult result){
-        EmailConfiguration emailConfigurationBD = emailConfigurationService.findByEmailHostAndEmailUsernameAndEmailPortAndEmailFrom(emailConfiguration.getEmailHost(), emailConfiguration.getEmailUsername(), emailConfiguration.getEmailPort(), emailConfiguration.getEmailFrom());
+        EmailConfiguration emailConfigurationBD = emailConfigurationService.findByTenantId(emailConfiguration.getTenantId().getId());
 
         if (null != emailConfigurationBD){
             FieldError err = new FieldError("Error", "emailConfiguration", "email_configuracion_existente");
