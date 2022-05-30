@@ -1,5 +1,6 @@
 package wwf.org.tenant.entity;
 import lombok.Data;
+import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -29,11 +30,14 @@ public class Module {
     private String routerLink;
 
     @NotEmpty(message = "servicio_vacio")
+    @URL(protocol = "http")
     @Column(unique = true, nullable = false)
     private String serviceUrl;
 
     private String serviceLanguage;
     private String serviceLanguageVersion;
+
+    @URL(protocol = "http")
     private String serviceGit;
 
     private Integer attribute1;
