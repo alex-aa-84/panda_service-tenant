@@ -46,9 +46,21 @@ public class ModuleController {
     @PostMapping()
     public ResponseEntity<Module> createModule(@Valid @RequestBody Module module, BindingResult result){
         Module moduleBD = moduleService.findByModule(module.getModule());
+        Module moduleBD1 = moduleService.findByServiceUrl(module.getServiceUrl());
+        Module moduleBD2 = moduleService.findByRouterLink(module.getRouterLink());
 
         if (null != moduleBD){
             FieldError err = new FieldError("Error", "module", "Modulo existente en la BD");
+            result.addError(err);
+        }
+
+        if (null != moduleBD1){
+            FieldError err = new FieldError("Error", "module", "service_existente_bd");
+            result.addError(err);
+        }
+
+        if (null != moduleBD2){
+            FieldError err = new FieldError("Error", "module", "router_link_existente_bd");
             result.addError(err);
         }
 

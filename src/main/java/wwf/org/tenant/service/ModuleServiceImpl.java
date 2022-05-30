@@ -42,6 +42,16 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     @Override
+    public Module findByRouterLink(String routerLink) {
+        return moduleRepository.findByRouterLink(routerLink);
+    }
+
+    @Override
+    public Module findByServiceUrl(String serviceUrl) {
+        return moduleRepository.findByServiceUrl(serviceUrl);
+    }
+
+    @Override
     public Module updateModule(Module module) {
         Module moduleDB = getModule(module.getId());
         if(null == moduleDB){
