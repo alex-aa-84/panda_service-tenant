@@ -1,6 +1,5 @@
 package wwf.org.tenant.entity;
 import lombok.Data;
-import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
