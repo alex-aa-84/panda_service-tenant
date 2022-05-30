@@ -4,11 +4,12 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
-@Table(name="tn_images")
+@Table(name="tn_images_config")
 @Data
-public class Image {
+public class ImageConfig {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +22,15 @@ public class Image {
     private String type;
     private String name;
 
-    @Temporal(TemporalType.TIMESTAMP)
     private Long create_by;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date creation_date;
+
+    private Long last_update_by;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date last_update_date;
 
     @Column(unique = true, nullable = false)
     @Size(min=32, max = 32)

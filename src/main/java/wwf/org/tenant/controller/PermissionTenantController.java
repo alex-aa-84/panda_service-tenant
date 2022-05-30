@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import wwf.org.tenant.entity.PermissionTenant;
 import wwf.org.tenant.service.PermissionTenantService;
+import wwf.org.tenant.serviceApi.FormatMessage;
 
 import javax.validation.Valid;
 import java.util.List;

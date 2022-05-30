@@ -1,4 +1,4 @@
-package wwf.org.tenant.controller;
+package wwf.org.tenant.serviceApi;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

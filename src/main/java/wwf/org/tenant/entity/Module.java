@@ -1,5 +1,8 @@
 package wwf.org.tenant.entity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -21,10 +24,11 @@ public class Module {
 
     private String description;
 
-    @Lob
-    private byte[] image;
-    private String typeImage;
-    private String nameImage;
+    @OneToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name="imageConfigId", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    private ImageConfig imageConfigId;
 
     @NotEmpty(message = "router_link_vacio")
     @Column(unique = true, nullable = false)

@@ -73,27 +73,6 @@ public class ModuleServiceImpl implements ModuleService {
         return moduleRepository.save(moduleDB);
     }
 
-    @Override
-    public Module uploadImage(Module module) {
-        Module moduleDB = getModule(module.getId());
-        if(null == moduleDB){
-            return null;
-        }
-
-        moduleDB.setModule(module.getModule());
-        moduleDB.setDescription(module.getDescription());
-        moduleDB.setRouterLink(module.getRouterLink());
-        moduleDB.setServiceUrl(module.getServiceUrl());
-        moduleDB.setServiceLanguage(module.getServiceLanguage());
-        moduleDB.setServiceLanguageVersion(module.getServiceLanguageVersion());
-        moduleDB.setServiceGit(module.getServiceGit());
-
-        moduleDB.setStatus(module.getStatus());
-        moduleDB.setLast_update_date(new Date());
-        moduleDB.setLast_update_by(module.getLast_update_by());
-
-        return moduleRepository.save(moduleDB);
-    }
 
     @Override
     public Boolean deleteModule(Long id) {

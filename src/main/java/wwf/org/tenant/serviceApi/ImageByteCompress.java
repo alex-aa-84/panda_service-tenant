@@ -1,4 +1,4 @@
-package wwf.org.tenant.controller;
+package wwf.org.tenant.serviceApi;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
