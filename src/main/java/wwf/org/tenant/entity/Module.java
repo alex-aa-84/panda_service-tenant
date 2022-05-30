@@ -22,7 +22,9 @@ public class Module {
     private String description;
 
     @Lob
-    private byte[] imagen;
+    private byte[] image;
+    private String typeImage;
+    private String nameImage;
 
     @NotEmpty(message = "router_link_vacio")
     @Column(unique = true, nullable = false)

@@ -17,6 +17,7 @@ public interface ModuleService {
     public Module findByServiceUrl(String serviceUrl);
 
     public Module updateModule(Module module);
+    public Module uploadImage(Module module);
 
     public Boolean deleteModule(Long id);
 }
