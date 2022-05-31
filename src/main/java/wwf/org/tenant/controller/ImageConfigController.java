@@ -5,8 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 import wwf.org.tenant.entity.ImageConfig;
 import wwf.org.tenant.service.ImageConfigService;
 import wwf.org.tenant.serviceApi.FormatMessage;
@@ -41,16 +43,18 @@ public class ImageConfigController {
     }
 
     @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity.BodyBuilder uploadImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
+    public ResponseEntity<ImageConfig> uploadImage(@RequestParam("imageFile") MultipartFile file, BindingResult result) throws IOException {
 
         ImageConfig img = new ImageConfig();
         img.setImage(compressBytes(file.getBytes()));
         img.setType(file.getContentType());
         img.setName(file.getOriginalFilename());
 
-        imageConfigService.createImage(img);
+        if(result.hasErrors()){
+            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
+        }
 
-        return ResponseEntity.status(HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.CREATED).body(imageConfigService.createImage(img));
     }
 
     @DeleteMapping(value = "/{id}")
