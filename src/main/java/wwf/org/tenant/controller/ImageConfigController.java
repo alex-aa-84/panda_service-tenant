@@ -2,8 +2,8 @@ package wwf.org.tenant.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.ResponseEntity.BodyBuilder;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,8 +40,8 @@ public class ImageConfigController {
         return ResponseEntity.ok(img);
     }
 
-    @PostMapping()
-    public BodyBuilder uploadImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
+    @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity.BodyBuilder uploadImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
 
         ImageConfig img = new ImageConfig();
         img.setImage(compressBytes(file.getBytes()));
