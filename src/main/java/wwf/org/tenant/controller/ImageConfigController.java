@@ -40,7 +40,7 @@ public class ImageConfigController {
         return ResponseEntity.ok(img);
     }
 
-    @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping()
     public ResponseEntity<ImageConfig> uploadImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
 
         ImageConfig img = new ImageConfig();
