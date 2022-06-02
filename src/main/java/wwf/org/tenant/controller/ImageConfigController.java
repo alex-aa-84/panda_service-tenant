@@ -44,7 +44,8 @@ public class ImageConfigController {
     public ResponseEntity<ImageConfig> uploadImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
 
         ImageConfig img = new ImageConfig();
-        img.setImage(compressBytes(file.getBytes()));
+        //img.setImage(compressBytes(file.getBytes()));
+        img.setImage(file.getBytes());
         img.setType(file.getContentType());
         img.setName(file.getOriginalFilename());
 
