@@ -26,9 +26,9 @@ public class Module {
 
     @OneToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="imageConfigId", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private ImageConfig imageConfigId;
+    private ImageConfig imageConfig;
 
     @NotEmpty(message = "router_link_vacio")
     @Column(unique = true, nullable = false)
