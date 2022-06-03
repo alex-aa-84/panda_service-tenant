@@ -24,24 +24,8 @@ public class ImageConfigController {
     @Autowired
     private ImageConfigService imageConfigService;
 
-    private FormatMessage formatMessage = new FormatMessage();
-
-    @GetMapping(path = { "/{id}" })
-    public ResponseEntity<ImageConfig> getImage(@PathVariable("id") Long id) throws IOException {
-
-        ImageConfig retrievedImage = imageConfigService.getImage(id);
-
-        ImageConfig img = new ImageConfig();
-        img.setImage(decompressBytes(retrievedImage.getImage()));
-        img.setType(retrievedImage.getType());
-        img.setName(retrievedImage.getName());
-
-
-        return ResponseEntity.ok(img);
-    }
-
     @PostMapping()
-    public ResponseEntity<ImageConfig> uploadImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
+    public ResponseEntity<ImageConfig> updateImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
 
         ImageConfig img = new ImageConfig();
         //img.setImage(compressBytes(file.getBytes()));
@@ -54,17 +38,18 @@ public class ImageConfigController {
         return ResponseEntity.status(HttpStatus.CREATED).body(imgR);
     }
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Boolean> deleteImage(@PathVariable("id") Long id){
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<ImageConfig> uploadImage(@RequestParam("imageFile") MultipartFile file, @PathVariable("id") Long id) throws IOException {
 
-        Boolean action = imageConfigService.deleteImage(id);
+        ImageConfig img = new ImageConfig();
+        img.setId(id);
+        img.setImage(file.getBytes());
+        img.setType(file.getContentType());
+        img.setName(file.getOriginalFilename());
 
-        if ( action){
-            return ResponseEntity.ok(action);
-        }else{
-            return ResponseEntity.notFound().build();
-        }
+        ImageConfig imgR = imageConfigService.updateImage(img);
 
+        return ResponseEntity.status(HttpStatus.CREATED).body(imgR);
     }
 
 }

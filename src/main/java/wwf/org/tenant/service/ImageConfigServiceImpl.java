@@ -47,15 +47,4 @@ public class ImageConfigServiceImpl implements ImageConfigService {
         return imageConfigRepository.save(imageConfigBD);
     }
 
-    @Override
-    public Boolean deleteImage(Long id) {
-        ImageConfig imageConfigBD = getImage(id);
-
-        if(null == imageConfigBD){
-            return false;
-        }
-
-        imageConfigRepository.deleteById(id);
-        return true;
-    }
 }
