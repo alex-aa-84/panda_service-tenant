@@ -24,7 +24,7 @@ public class Module {
 
     private String description;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
