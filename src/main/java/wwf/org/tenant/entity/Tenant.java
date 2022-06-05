@@ -20,7 +20,7 @@ public class Tenant {
     @Column(unique = true, nullable = false)
     private String tenant;
 
-    @NotEmpty(message = "domicilio_vacio")
+    @NotEmpty(message = "dominio_vacio")
     @Column(unique = true, nullable = false)
     private String domain;
 
@@ -31,15 +31,15 @@ public class Tenant {
     private String departmentWwf;
 
     @NotEmpty(message = "unidad_administrativa_vacia")
-    @OneToOne(optional = false)
-    @JoinColumn(name="administrativeUnitId", nullable = false, referencedColumnName = "id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    AdministrativeUnit administrativeUnitId;
+    private AdministrativeUnit administrativeUnit;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name="countryId", referencedColumnName = "id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    Country countryId;
+    private Country country;
 
     private Integer attribute1;
     private Integer attribute2;
