@@ -4,6 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -30,7 +32,7 @@ public class Tenant {
     @Column(unique = true, nullable = false)
     private String departmentWwf;
 
-    @NotEmpty(message = "unidad_administrativa_vacia")
+    @NotNull(message = "unidad_administrativa_nula")
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
