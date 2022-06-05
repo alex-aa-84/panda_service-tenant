@@ -21,7 +21,7 @@ public class Tenant {
     private String tenant;
 
     @NotEmpty(message = "dominio_vacio")
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable =  false)
     private String domain;
 
     private String organization;
