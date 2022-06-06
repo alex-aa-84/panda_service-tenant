@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService{
     public User createUser(User user) {
         user.setStatus("CREATED");
         user.setCreation_date(new Date());
-        user.setCreation_date(new Date());
+        user.setLast_update_date(new Date());
         return userRepository.save(user);
     }
 
