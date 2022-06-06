@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import wwf.org.tenant.entity.Tenant;
 import wwf.org.tenant.entity.User;
 import wwf.org.tenant.service.UserService;
 import wwf.org.tenant.serviceApi.FormatMessage;
@@ -41,6 +42,15 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(user);
+    }
+
+    @GetMapping(value = "/oid/{oid}")
+    public ResponseEntity<User> getByTenant(@PathVariable("oid") String oid){
+        User userR = userService.findByOid(oid);
+        if(null == userR){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(userR);
     }
 
     @PostMapping()
