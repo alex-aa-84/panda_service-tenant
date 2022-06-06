@@ -6,6 +6,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -17,7 +18,7 @@ public class User {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "inquilino_nulo")
+    @NotNull(message = "inquilino_nulo")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(nullable = false, referencedColumnName = "id")
@@ -33,7 +34,7 @@ public class User {
     private String surname;
     private String givenName;
 
-    @NotEmpty(message = "permisos_inquilino_nulo")
+    @NotNull(message = "permisos_inquilino_nulo")
     @ManyToOne(optional = false)
     @JoinColumn(nullable = false, referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
