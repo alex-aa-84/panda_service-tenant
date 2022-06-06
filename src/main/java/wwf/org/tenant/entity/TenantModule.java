@@ -6,12 +6,12 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name="tn_tenant_modules", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"tenantId", "moduleId"})
-})
+@Table(name="tn_tenant_modules")
 @Data
 public class TenantModule {
     @Id
@@ -19,19 +19,19 @@ public class TenantModule {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "inquilino_vacio")
+    @NotNull(message = "inquilino_nulo")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="tenantId", nullable = false, referencedColumnName = "id")
+    @JoinColumn(nullable = false, referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private Tenant tenantId;
+    private Tenant tenant;
 
-    @NotEmpty(message = "modulo_Vacio")
+    @NotEmpty(message = "modulo_nulo")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="moduleId", nullable = false, referencedColumnName = "id")
+    @JoinColumn(nullable = false, referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private Module moduleId;
+    private Module module;
 
     private Integer attribute1;
     private Integer attribute2;
@@ -58,4 +58,8 @@ public class TenantModule {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date last_update_date;
+
+    @Column(unique = true, nullable = false)
+    @Size(min=32, max = 32)
+    private String ctrlMd5;
 }

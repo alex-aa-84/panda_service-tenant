@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import wwf.org.tenant.entity.Module;
 import wwf.org.tenant.entity.TenantModule;
 import wwf.org.tenant.repository.TenantModuleRepository;
+import wwf.org.tenant.serviceApi.MD5Util;
 
 import java.util.Date;
 import java.util.List;
@@ -32,6 +33,8 @@ public class TenantModuleServiceImpl implements TenantModuleService{
         tenantModule.setStatus("CREATED");
         tenantModule.setCreation_date(new Date());
         tenantModule.setLast_update_date(new Date());
+        String md5 = MD5Util.string2MD5(tenantModule.getTenant().getId()+ tenantModule.getModule().getId()+"");
+        tenantModule.setCtrlMd5(md5);
         return tenantModuleRepository.save(tenantModule);
     }
 
@@ -47,12 +50,14 @@ public class TenantModuleServiceImpl implements TenantModuleService{
             return null;
         }
 
-        tenantModuleDB.setTenantId(tenantModule.getTenantId());
-        tenantModuleDB.setModuleId(tenantModule.getModuleId());
+        tenantModuleDB.setTenant(tenantModule.getTenant());
+        tenantModuleDB.setModule(tenantModule.getModule());
 
         tenantModuleDB.setStatus(tenantModule.getStatus());
         tenantModuleDB.setLast_update_date(new Date());
         tenantModuleDB.setLast_update_by(tenantModule.getLast_update_by());
+        String md5 = MD5Util.string2MD5(tenantModule.getTenant().getId()+ tenantModule.getModule().getId()+"");
+        tenantModuleDB.setCtrlMd5(md5);
         return tenantModuleRepository.save(tenantModuleDB);
     }
 

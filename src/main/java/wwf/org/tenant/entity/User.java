@@ -17,12 +17,12 @@ public class User {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @NotEmpty(message = "inquilino_vacio")
+    @NotEmpty(message = "inquilino_nulo")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="tenantId", nullable = false, referencedColumnName = "id")
+    @JoinColumn(nullable = false, referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private Tenant tenantId;
+    private Tenant tenant;
 
     @NotEmpty(message = "oid_vacio")
     @Column(unique = true, nullable = false)
@@ -33,11 +33,11 @@ public class User {
     private String surname;
     private String givenName;
 
-    @NotEmpty(message = "permisos_inquilino_vacio")
+    @NotEmpty(message = "permisos_inquilino_nulo")
     @ManyToOne(optional = false)
-    @JoinColumn(name="permissionsTenantId", nullable = false, referencedColumnName = "id")
+    @JoinColumn(nullable = false, referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    PermissionTenant permissionsTenantId;
+    PermissionTenant permissionsTenant;
 
     private Integer attribute1;
     private Integer attribute2;

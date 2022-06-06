@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wwf.org.tenant.entity.Tenant;
 import wwf.org.tenant.repository.TenantRepository;
+import wwf.org.tenant.serviceApi.MD5Util;
 
 import java.util.Date;
 import java.util.List;

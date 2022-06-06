@@ -30,6 +30,8 @@ public class Tenant {
     @Column(unique = true, nullable =  false)
     private String domain;
 
+    @NotEmpty(message = "organizacion_vacio")
+    @Column(unique = true, nullable =  false)
     private String organization;
 
     @NotEmpty(message = "departamento_wwf_vacio")

@@ -45,7 +45,7 @@ public class TenantModuleController {
 
     @PostMapping()
     public ResponseEntity<TenantModule> createTenantModule(@Valid @RequestBody TenantModule tenantModule, BindingResult result){
-        TenantModule tenantModuleBD = tenantModuleService.findByTenantIdAndModuleId(tenantModule.getTenantId().getId(), tenantModule.getModuleId().getId());
+        TenantModule tenantModuleBD = tenantModuleService.findByTenantIdAndModuleId(tenantModule.getTenant().getId(), tenantModule.getModule().getId());
 
         if (null != tenantModuleBD){
             FieldError err = new FieldError("Error", "module", "modulo_existente");
