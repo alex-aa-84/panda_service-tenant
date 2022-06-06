@@ -35,7 +35,7 @@ public class Module {
     private String routerLink;
 
     @NotEmpty(message = "servicio_vacio")
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String serviceUrl;
 
     private String serviceLanguage;
