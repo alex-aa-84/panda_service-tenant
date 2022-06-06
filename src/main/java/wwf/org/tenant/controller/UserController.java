@@ -48,7 +48,7 @@ public class UserController {
     public ResponseEntity<User> getByTenant(@PathVariable("oid") String oid){
         User userR = userService.findByOid(oid);
         if(null == userR){
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(userR);
     }
