@@ -26,7 +26,7 @@ public class TenantModule {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Tenant tenant;
 
-    @NotEmpty(message = "modulo_nulo")
+    @NotNull(message = "modulo_nulo")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(nullable = false, referencedColumnName = "id")
