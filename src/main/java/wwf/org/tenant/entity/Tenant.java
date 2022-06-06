@@ -22,6 +22,10 @@ public class Tenant {
     @Column(unique = true, nullable = false)
     private String tenant;
 
+    @NotEmpty(message = "cliente_vacio")
+    @Column(unique = true, nullable = false)
+    private String clientId;
+
     @NotEmpty(message = "dominio_vacio")
     @Column(unique = true, nullable =  false)
     private String domain;

@@ -51,6 +51,7 @@ public class TenantServiceImpl implements TenantService{
         }
 
         tenantDB.setTenant(tenant.getTenant());
+        tenantDB.setClientId(tenant.getClientId());
         tenantDB.setDomain(tenant.getDomain());
         tenantDB.setOrganization(tenant.getOrganization());
         tenantDB.setDepartmentWwf(tenant.getDepartmentWwf());
