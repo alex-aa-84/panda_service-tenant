@@ -31,7 +31,7 @@ public class Module {
     private ImageConfig imageConfig;
 
     @NotEmpty(message = "router_link_vacio")
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String routerLink;
 
     @NotEmpty(message = "servicio_vacio")
