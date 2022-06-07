@@ -47,13 +47,13 @@ public class TenantModuleController {
     }
 
     @GetMapping(value = "/tenant/{tenant}")
-    public ResponseEntity<TenantModule> getTenantModuleTenant(@PathVariable("tenant") String tenant){
+    public ResponseEntity<List<TenantModule>> getTenantModuleTenant(@PathVariable("tenant") String tenant){
         Tenant tenantDB = tenantService.findByTenant(tenant);
-        TenantModule tenantmodule = tenantModuleService.findByTenant(tenantDB);
-        if(null == tenantmodule){
+        List<TenantModule> tenantmodules = tenantModuleService.findByTenant(tenantDB);
+        if(null == tenantmodules){
             return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.ok(tenantmodule);
+        return ResponseEntity.ok(tenantmodules);
     }
 
     @PostMapping()

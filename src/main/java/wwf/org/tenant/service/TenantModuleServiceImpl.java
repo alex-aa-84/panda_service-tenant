@@ -45,7 +45,7 @@ public class TenantModuleServiceImpl implements TenantModuleService{
     }
 
     @Override
-    public TenantModule findByTenant(Tenant tenant) {
+    public List<TenantModule> findByTenant(Tenant tenant) {
         return tenantModuleRepository.findByTenant(tenant);
     }
 
