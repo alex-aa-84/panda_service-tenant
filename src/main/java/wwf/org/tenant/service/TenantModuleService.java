@@ -13,7 +13,7 @@ public interface TenantModuleService {
     public TenantModule createTenantModule(TenantModule tenantModule);
 
     public TenantModule findByTenantIdAndModuleId(Long tenant_id, Long module_id);
-    public TenantModule findByTenant(String tenant);
+    public TenantModule findByTenant(Tenant tenant);
     public TenantModule updateTenantModule(TenantModule tenantModule);
 
     public Boolean deleTenantModule(Long id);

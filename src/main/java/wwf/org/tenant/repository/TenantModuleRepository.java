@@ -9,6 +9,6 @@ import wwf.org.tenant.entity.User;
 public interface TenantModuleRepository extends JpaRepository<TenantModule, Long> {
 
     public TenantModule findByTenantIdAndModuleId(Long tenant_id, Long module_id);
-    public TenantModule findByTenant(String tenant);
+    public TenantModule findByTenant(Tenant tenant);
 
 }

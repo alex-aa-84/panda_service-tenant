@@ -10,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 import wwf.org.tenant.entity.Tenant;
 import wwf.org.tenant.entity.TenantModule;
 import wwf.org.tenant.service.TenantModuleService;
+import wwf.org.tenant.service.TenantService;
 import wwf.org.tenant.serviceApi.FormatMessage;
 
 import javax.validation.Valid;
@@ -22,7 +23,8 @@ public class TenantModuleController {
 
     @Autowired
     private TenantModuleService tenantModuleService;
-
+    @Autowired
+    private TenantService tenantService;
     private FormatMessage formatMessage = new FormatMessage();
 
     @GetMapping
@@ -46,7 +48,8 @@ public class TenantModuleController {
 
     @GetMapping(value = "/tenant/{tenant}")
     public ResponseEntity<TenantModule> getTenantModuleTenant(@PathVariable("tenant") String tenant){
-        TenantModule tenantmodule = tenantModuleService.findByTenant(tenant);
+        Tenant tenantDB = tenantService.findByTenant(tenant);
+        TenantModule tenantmodule = tenantModuleService.findByTenant(tenantDB);
         if(null == tenantmodule){
             return ResponseEntity.noContent().build();
         }
