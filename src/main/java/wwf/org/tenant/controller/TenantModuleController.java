@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import wwf.org.tenant.entity.Tenant;
 import wwf.org.tenant.entity.TenantModule;
 import wwf.org.tenant.service.TenantModuleService;
 import wwf.org.tenant.serviceApi.FormatMessage;
@@ -39,6 +40,15 @@ public class TenantModuleController {
         TenantModule tenantmodule = tenantModuleService.getTenantModule(id);
         if(null == tenantmodule){
             return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(tenantmodule);
+    }
+
+    @GetMapping(value = "/tenant/{tenant}")
+    public ResponseEntity<TenantModule> getTenantModuleTenant(@PathVariable("tenant") String tenant){
+        TenantModule tenantmodule = tenantModuleService.findByTenant(tenant);
+        if(null == tenantmodule){
+            return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(tenantmodule);
     }

@@ -1,5 +1,6 @@
 package wwf.org.tenant.service;
 
+import wwf.org.tenant.entity.Tenant;
 import wwf.org.tenant.entity.TenantModule;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public interface TenantModuleService {
     public TenantModule createTenantModule(TenantModule tenantModule);
 
     public TenantModule findByTenantIdAndModuleId(Long tenant_id, Long module_id);
+    public TenantModule findByTenant(String tenant);
     public TenantModule updateTenantModule(TenantModule tenantModule);
 
     public Boolean deleTenantModule(Long id);

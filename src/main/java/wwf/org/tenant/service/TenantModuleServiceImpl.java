@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wwf.org.tenant.entity.Module;
+import wwf.org.tenant.entity.Tenant;
 import wwf.org.tenant.entity.TenantModule;
 import wwf.org.tenant.repository.TenantModuleRepository;
 import wwf.org.tenant.serviceApi.MD5Util;
@@ -41,6 +42,11 @@ public class TenantModuleServiceImpl implements TenantModuleService{
     @Override
     public TenantModule findByTenantIdAndModuleId(Long tenant_id, Long module_id) {
         return tenantModuleRepository.findByTenantIdAndModuleId(tenant_id, module_id);
+    }
+
+    @Override
+    public TenantModule findByTenant(String tenant) {
+        return tenantModuleRepository.findByTenant(tenant);
     }
 
     @Override

@@ -51,7 +51,7 @@ public class ModuleController {
             FieldError err = new FieldError("Error", "module", "Modulo existente en la BD");
             result.addError(err);
         }
-        
+
         if(result.hasErrors()){
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
