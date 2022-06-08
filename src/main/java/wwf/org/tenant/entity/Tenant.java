@@ -7,6 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="tn_tenants")
@@ -39,10 +40,10 @@ public class Tenant {
     private String departmentWwf;
 
     @NotNull(message = "unidad_administrativa_nula")
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private AdministrativeUnit administrativeUnit;
+    private List<AdministrativeUnit> administrativeUnit;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
