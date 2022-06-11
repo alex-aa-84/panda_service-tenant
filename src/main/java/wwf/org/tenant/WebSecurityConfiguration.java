@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Configuration
+//@Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 //@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
@@ -18,12 +18,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         // @formatter:off
-        http.authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
-                .oauth2ResourceServer()
-                .jwt()
-                .and();
+        super.configure(http);
+        http.authorizeRequests((request)-> request.anyRequest().authenticated());
         // @formatter:on
     }
 }
