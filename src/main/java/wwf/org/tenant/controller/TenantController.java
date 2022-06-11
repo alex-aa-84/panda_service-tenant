@@ -13,7 +13,8 @@ import wwf.org.tenant.serviceApi.FormatMessage;
 
 import javax.validation.Valid;
 import java.util.List;
-@CrossOrigin(origins = {"${settings.cors_origin}"})
+//@CrossOrigin(origins = {"${settings.cors_origin}"})
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 @RestController
 @RequestMapping(value="/tenants")
 public class TenantController {
