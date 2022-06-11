@@ -8,11 +8,11 @@ spring:
     config:
       username: ${EUR_USER}
       password: ${EUR_PASS}
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          jwk-set-uri: https://login.microsoftonline.com/3363f614-6ea7-4f25-bc97-aadc48a24082/discovery/v2.0/keys
-          issuer-uri: https://login.microsoftonline.com/3363f614-6ea7-4f25-bc97-aadc48a24082/v2.0
+    azure:
+      active-directory:
+        enabled: true
+        credential:
+          client-id: 54ebc1d3-3015-446b-9187-37c6a7b5018c
+          app-id-uri: api://54ebc1d3-3015-446b-9187-37c6a7b5018c
 settings:
   cors_origin: http://localhost:4200/
