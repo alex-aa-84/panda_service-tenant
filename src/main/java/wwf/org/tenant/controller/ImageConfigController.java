@@ -16,9 +16,10 @@ import java.io.IOException;
 import static wwf.org.tenant.serviceApi.ImageByteCompress.compressBytes;
 import static wwf.org.tenant.serviceApi.ImageByteCompress.decompressBytes;
 
-@CrossOrigin(origins = {"${settings.cors_origin}"})
+@CrossOrigin(origins = {"${settings.cors_origin}"}, maxAge = 3600,
+        allowedHeaders={"Authorization"})
 @RestController
-@RequestMapping(value="/image")
+@RequestMapping(value="/wwf/image")
 public class ImageConfigController {
 
     @Autowired

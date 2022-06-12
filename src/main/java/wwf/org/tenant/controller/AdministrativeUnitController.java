@@ -14,9 +14,10 @@ import wwf.org.tenant.serviceApi.FormatMessage;
 import javax.validation.Valid;
 import java.util.List;
 
-@CrossOrigin(origins = {"${settings.cors_origin}"})
+@CrossOrigin(origins = {"${settings.cors_origin}"}, maxAge = 3600,
+        allowedHeaders={"Authorization"})
 @RestController
-@RequestMapping(value="/adminunits")
+@RequestMapping(value="/wwf/adminunits")
 public class AdministrativeUnitController {
 
     @Autowired

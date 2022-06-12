@@ -23,7 +23,7 @@ import java.util.Optional;
 //        allowedHeaders={"Authorization"})
 
 @RestController
-@RequestMapping(value="/tenants")
+@RequestMapping(value="/wwf/tenants")
 public class TenantController {
 
     @Autowired
