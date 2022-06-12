@@ -1,6 +1,7 @@
 package wwf.org.tenant.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -13,8 +14,12 @@ import wwf.org.tenant.serviceApi.FormatMessage;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
+
 //@CrossOrigin(origins = {"${settings.cors_origin}"})
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
+//@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "*", maxAge = 3600,
+        allowedHeaders={"x-auth-token", "x-requested-with", "x-xsrf-token"})
 @RestController
 @RequestMapping(value="/tenants")
 public class TenantController {
@@ -25,7 +30,11 @@ public class TenantController {
     private FormatMessage formatMessage = new FormatMessage();
 
     @GetMapping
-    public ResponseEntity<List<Tenant>> listTenant(){
+    public ResponseEntity<List<Tenant>> listTenant(@RequestHeader HttpHeaders headers){
+        Optional.ofNullable(headers.get(HttpHeaders.AUTHORIZATION)).ifPresent(
+                h -> System.out.println("AUTHORIZATION HEADER: " + h.get(0))
+        );
+
         List<Tenant> tenants = tenantService.listAllTenant();
         if(tenants.isEmpty()){
             return ResponseEntity.noContent().build();
