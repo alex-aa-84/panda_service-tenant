@@ -15,4 +15,4 @@ spring:
           client-id: 54ebc1d3-3015-446b-9187-37c6a7b5018c
           app-id-uri: api://54ebc1d3-3015-446b-9187-37c6a7b5018c
 settings:
-  cors_origin: http://localhost:4200/
+  cors_origin: http://localhost:4200
