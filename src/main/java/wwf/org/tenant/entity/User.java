@@ -33,6 +33,12 @@ public class User {
     private String displayName;
     private String surname;
     private String givenName;
+    private String jobTitle;
+    private String mail;
+    private String mobilePhone;
+    private String officeLocation;
+    private String preferredLanguage;
+
 
     @NotNull(message = "permisos_inquilino_nulo")
     @ManyToOne(optional = false)

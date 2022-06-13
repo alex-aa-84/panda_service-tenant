@@ -53,6 +53,12 @@ public class UserServiceImpl implements UserService{
         userDB.setDisplayName(user.getDisplayName());
         userDB.setSurname(user.getSurname());
         userDB.setGivenName(user.getGivenName());
+        userDB.setJobTitle(user.getJobTitle());
+        userDB.setMail(user.getMail());
+        userDB.setMobilePhone(user.getMobilePhone());
+        userDB.setOfficeLocation(user.getOfficeLocation());
+        userDB.setPreferredLanguage(user.getPreferredLanguage());
+
         userDB.setPermissionsTenant(user.getPermissionsTenant());
 
         userDB.setStatus(user.getStatus());

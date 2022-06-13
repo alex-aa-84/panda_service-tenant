@@ -39,12 +39,6 @@ public class Tenant {
     @Column(unique = true, nullable = false)
     private String departmentWwf;
 
-    /*@NotNull(message = "unidad_administrativa_nula")
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private AdministrativeUnit administrativeUnit;*/
-
     @NotNull(message = "unidad_administrativa_nula")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
