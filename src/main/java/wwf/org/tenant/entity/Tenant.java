@@ -40,10 +40,10 @@ public class Tenant {
     private String departmentWwf;
 
     @NotNull(message = "unidad_administrativa_nula")
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private List<AdministrativeUnit> administrativeUnit;
+    private AdministrativeUnit administrativeUnit;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
