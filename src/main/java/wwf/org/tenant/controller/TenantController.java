@@ -17,11 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = {"${settings.cors_origin}"}, maxAge = 3600,
-        allowedHeaders={"Authorization"})
-//@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
-//@CrossOrigin(origins = "*", maxAge = 3600,
-//        allowedHeaders={"Authorization"})
-
+        allowedHeaders={"Origin", "X-Requested-With", "Content-Type", "Accept", "x-client-key", "x-client-token", "x-client-secret", "Authorization"}, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS, RequestMethod.HEAD, RequestMethod.DELETE, RequestMethod.PUT})
 @RestController
 @RequestMapping(value="/wwf/tenants")
 public class TenantController {

@@ -17,7 +17,7 @@ import static wwf.org.tenant.serviceApi.ImageByteCompress.compressBytes;
 import static wwf.org.tenant.serviceApi.ImageByteCompress.decompressBytes;
 
 @CrossOrigin(origins = {"${settings.cors_origin}"}, maxAge = 3600,
-        allowedHeaders={"Authorization"})
+        allowedHeaders={"Origin", "X-Requested-With", "Content-Type", "Accept", "x-client-key", "x-client-token", "x-client-secret", "Authorization"}, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS, RequestMethod.HEAD, RequestMethod.DELETE, RequestMethod.PUT})
 @RestController
 @RequestMapping(value="/wwf/image")
 public class ImageConfigController {
