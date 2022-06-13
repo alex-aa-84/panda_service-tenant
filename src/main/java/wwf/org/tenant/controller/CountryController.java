@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin(origins = {"${settings.cors_origin}"}, maxAge = 3600,
-        allowedHeaders={"Authorization"})
+        allowedHeaders={"Authorization"}, methods = {RequestMethod.GET, RequestMethod.POST})
 @RestController
 @RequestMapping(value="/wwf/countrys")
 public class CountryController { 
