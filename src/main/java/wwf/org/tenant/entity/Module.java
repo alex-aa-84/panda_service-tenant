@@ -38,6 +38,10 @@ public class Module {
     @Column(nullable = false)
     private String serviceUrl;
 
+    @NotEmpty(message = "exposicion_vacio")
+    @Column(nullable = false)
+    private String exposeApi;
+
     private String serviceLanguage;
     private String serviceLanguageVersion;
 
