@@ -3,7 +3,6 @@ package wwf.org.tenant.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import wwf.org.tenant.entity.AdministrativeUnit;
 import wwf.org.tenant.entity.Module;
 import wwf.org.tenant.repository.ModuleRepository;
 
