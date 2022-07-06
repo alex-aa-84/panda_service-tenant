@@ -1,10 +1,51 @@
+#Application Configuration
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
+# ===============================
+# DB
+# ===============================
 spring:
   application:
     name: service-tenant
-  config:
-    enabled: true
-    import: configserver:https://service-config.azurewebsites.net
-  cloud:
-    config:
-      username: ${EUR_USER}
-      password: ${EUR_PASS}
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://181.123.9.70/panda_tenant?useSSL=true&requireSSL=false&serverTimezone=UTC
+    username: ${USER_BD}
+    password: ${PASS_BD}
+  # ===============================
+  # JPA / HIBERNATE
+  # ===============================
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: false
+        format_sql: false
+
+  # ===============================
+  # SECURITY
+  # ===============================
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://login.microsoftonline.com/3363f614-6ea7-4f25-bc97-aadc48a24082/discovery/v2.0/keys
+          issuer-uri: https://login.microsoftonline.com/3363f614-6ea7-4f25-bc97-aadc48a24082/v2.0
+
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+  level:
+    org.springframework.security: DEBUG
+
+settings:
+  cors_origin: http://localhost:4200
+  cors_origin_pro: https://gray-bush-0aeb0ca10.1.azurestaticapps.net
