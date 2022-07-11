@@ -13,8 +13,8 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://181.123.9.70/panda_tenant?useSSL=true&requireSSL=false&serverTimezone=UTC
-    username: ${USER_BD}
-    password: ${PASS_BD}
+    username: wwf
+    password: 123456789
   # ===============================
   # JPA / HIBERNATE
   # ===============================
