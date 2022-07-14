@@ -59,7 +59,7 @@ public class UserController {
         User userBD = userService.findByOid(user.getOid());
 
         if (null != userBD){
-            FieldError err = new FieldError("Error", "users", "usuario_existente");
+            FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");
             result.addError(err);
         }
 

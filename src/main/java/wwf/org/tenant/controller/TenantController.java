@@ -74,7 +74,7 @@ public class TenantController {
         Tenant tenantBD = tenantService.findByTenant(tenant.getTenant());
 
         if (null != tenantBD){
-            FieldError err = new FieldError("Error", "inquilino", "inquilino_existente");
+            FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");
             result.addError(err);
         }
 

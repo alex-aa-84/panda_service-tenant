@@ -49,7 +49,7 @@ public class ModuleController {
         Module moduleBD = moduleService.findByModule(module.getModule());
 
         if (null != moduleBD){
-            FieldError err = new FieldError("Error", "module", "Modulo existente en la BD");
+            FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");
             result.addError(err);
         }
 

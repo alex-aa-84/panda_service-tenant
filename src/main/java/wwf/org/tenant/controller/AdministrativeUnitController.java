@@ -50,7 +50,7 @@ public class AdministrativeUnitController {
         AdministrativeUnit administrativeUnitBD = administrativeUnitService.findByAdministrativeUnit(administrativeUnit.getAdministrativeUnit());
 
         if (null != administrativeUnitBD){
-            FieldError err = new FieldError("Error", "administrativeUnit", "unidad_administrativa_existente");
+            FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");
             result.addError(err);
         }
 

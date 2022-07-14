@@ -7,9 +7,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import wwf.org.tenant.entity.EmailConfiguration;
-import wwf.org.tenant.service.EmailConfigurationService;
+import wwf.org.tenant.entity.TimesheetStatus;
+import wwf.org.tenant.service.TimesheetStatusService;
 import wwf.org.tenant.serviceApi.FormatMessage;
+
 
 import javax.validation.Valid;
 import java.util.List;
@@ -17,38 +18,39 @@ import java.util.List;
 @CrossOrigin(origins = {"${settings.cors_origin}", "${settings.cors_origin_pro}"}, maxAge = 3600,
         allowedHeaders={"Origin", "X-Requested-With", "Content-Type", "Accept", "x-client-key", "x-client-token", "x-client-secret", "Authorization"}, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS, RequestMethod.HEAD, RequestMethod.DELETE, RequestMethod.PUT})
 @RestController
-@RequestMapping(value="/wwf/emails")
-public class EmailConfigurationController {
+@RequestMapping(value="/wwf/timesheetstatus")
+public class TimesheetStatusController {
 
     @Autowired
-    private EmailConfigurationService emailConfigurationService;
+    private TimesheetStatusService service;
 
     private FormatMessage formatMessage = new FormatMessage();
 
     @GetMapping
-    public ResponseEntity<List<EmailConfiguration>> listEmailConfiguration(){
-        List<EmailConfiguration> emails = emailConfigurationService.listAllEmailConfiguration();
-        if(emails.isEmpty()){
+    public ResponseEntity<List<TimesheetStatus>> listData(){
+        List<TimesheetStatus> data = service.listAllTimesheetStatus();
+        if(data.isEmpty()){
             return ResponseEntity.noContent().build();
         }
 
-        return ResponseEntity.ok(emails);
+        return ResponseEntity.ok(data);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<EmailConfiguration> getEmailConfiguration(@PathVariable("id") Long id){
-        EmailConfiguration email = emailConfigurationService.getEmailConfiguration(id);
-        if(null == email){
+    public ResponseEntity<TimesheetStatus> getData(@PathVariable("id") Long id){
+        TimesheetStatus data = service.getTimesheetStatus(id);
+        if(null == data){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(email);
+        return ResponseEntity.ok(data);
     }
 
     @PostMapping()
-    public ResponseEntity<EmailConfiguration> createEmailConfiguration(@Valid @RequestBody EmailConfiguration emailConfiguration, BindingResult result){
-        EmailConfiguration emailConfigurationBD = emailConfigurationService.findByTenantId(emailConfiguration.getTenantId().getId());
+    public ResponseEntity<TimesheetStatus> createData(@Valid @RequestBody TimesheetStatus data, BindingResult result){
 
-        if (null != emailConfigurationBD){
+        TimesheetStatus dataBD = service.findByName(data.getName());
+
+        if (null != dataBD){
             FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");
             result.addError(err);
         }
@@ -57,26 +59,27 @@ public class EmailConfigurationController {
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(emailConfigurationService.createEmailConfiguration(emailConfiguration));
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.createTimesheetStatus(data));
     }
 
     @PutMapping()
-    public ResponseEntity<EmailConfiguration> updateEmailConfiguration(@Valid @RequestBody EmailConfiguration emailConfiguration, BindingResult result){
+    public ResponseEntity<TimesheetStatus> updateData(@Valid @RequestBody TimesheetStatus data, BindingResult result){
+
         if(result.hasErrors()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, formatMessage.format(result));
         }
 
-        EmailConfiguration emailConfigurationDB = emailConfigurationService.updateEmailConfiguration(emailConfiguration);
-        if(null == emailConfigurationDB) {
+        TimesheetStatus dataUp = service.updateTimesheetStatus(data);
+        if(null == dataUp){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(emailConfigurationDB);
+        return ResponseEntity.ok(dataUp);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Boolean> deleteEmailConfiguration(@PathVariable("id") Long id){
+    public ResponseEntity<Boolean> deleteData(@PathVariable("id") Long id){
 
-        Boolean action = emailConfigurationService.deleteEmailConfiguration(id);
+        Boolean action = service.deleteTimesheetStatus(id);
 
         if ( action){
             return ResponseEntity.ok(action);

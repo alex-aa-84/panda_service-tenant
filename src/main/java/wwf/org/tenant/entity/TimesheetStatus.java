@@ -1,51 +1,25 @@
 package wwf.org.tenant.entity;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-@Table(name="tn_modules")
+@Table(name = "ts_timesheet_status")
 @Data
-public class Module {
-
+public class TimesheetStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
 
+    //Puede ser Desfasado o Actual, Actual es el vigente y desfasado en caso que se hiciera una modificación
     @Column(unique = true, nullable = false)
-    private String module;
+    private String name;
 
     private String description;
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private ImageConfig imageConfig;
-
-    @Column(nullable = false)
-    private String routerLink;
-
-    @Column(nullable = false)
-    private String serviceUrl;
-
-    private String exposeApi;
-
-    private String serviceLanguage;
-    private String serviceLanguageVersion;
-
-    private String serviceGit;
-
-    @OneToMany(mappedBy = "module", cascade = CascadeType.ALL)
-    private List<SubModules> subModulesList;
-
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;

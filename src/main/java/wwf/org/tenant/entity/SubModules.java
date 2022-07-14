@@ -1,19 +1,19 @@
 package wwf.org.tenant.entity;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name="tn_tenant_modules")
+@Table(name="tn_submodules",  uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"moduleId", "submodule"})
+})
 @Data
-public class TenantModule {
+public class SubModules {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
@@ -21,15 +21,19 @@ public class TenantModule {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(nullable = false, referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private Tenant tenant;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(nullable = false, referencedColumnName = "id")
+    @JoinColumn(nullable = false, referencedColumnName = "id", name = "moduleId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Module module;
+
+    @Column(nullable = false)
+    private String submodule;
+
+    private String description;
+
+    @Column(nullable = false)
+    private String routerLink;
+
+    private String serviceUrl;
 
     private Integer attribute1;
     private Integer attribute2;
@@ -56,8 +60,4 @@ public class TenantModule {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date last_update_date;
-
-    @Column(unique = true, nullable = false)
-    @Size(min=32, max = 32)
-    private String ctrlMd5;
 }

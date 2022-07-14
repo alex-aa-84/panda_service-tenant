@@ -48,7 +48,7 @@ public class CountryController {
         Country countryBD = countryService.findByCountry(country.getCountry());
 
         if (null != countryBD){
-            FieldError err = new FieldError("Error", "country", "pais_existente");
+            FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");
             result.addError(err);
         }
 

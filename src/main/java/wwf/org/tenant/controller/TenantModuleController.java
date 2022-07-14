@@ -62,7 +62,7 @@ public class TenantModuleController {
         TenantModule tenantModuleBD = tenantModuleService.findByTenantIdAndModuleId(tenantModule.getTenant().getId(), tenantModule.getModule().getId());
 
         if (null != tenantModuleBD){
-            FieldError err = new FieldError("Error", "module", "modulo_existente");
+            FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");
             result.addError(err);
         }
 

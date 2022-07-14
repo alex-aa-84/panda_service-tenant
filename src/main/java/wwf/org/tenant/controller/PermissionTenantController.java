@@ -49,7 +49,7 @@ public class PermissionTenantController {
         PermissionTenant permissionBD = permissionTenantService.findByPermissions(permissionTenant.getPermissions());
 
         if (null != permissionBD){
-            FieldError err = new FieldError("Error", "permissionTenant", "permiso_existente");
+            FieldError err = new FieldError("Error", "registroExistente", "registroExistenteBD");
             result.addError(err);
         }
 
