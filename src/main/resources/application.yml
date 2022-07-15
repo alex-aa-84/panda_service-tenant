@@ -12,7 +12,7 @@ spring:
     name: service-tenant
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://181.123.9.70/panda_tenant?useSSL=true&requireSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://192.168.1.100/panda_tenant?useSSL=true&requireSSL=false&serverTimezone=UTC
     username: wwf
     password: 123456789
   # ===============================
