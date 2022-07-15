@@ -25,13 +25,6 @@ public class WorkflowStates {
     @Column(unique = true, nullable = false)
     private String state;
 
-    @NotNull(message = "workflowSignatures_nulo")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(nullable = false, referencedColumnName = "id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private WorkflowSignatures workflowSignatures;
-
     private String description;
 
     private Integer attribute1;

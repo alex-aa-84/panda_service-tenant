@@ -42,7 +42,6 @@ public class WorkflowStatesServiceImpl implements WorkflowStatesService{
         }
 
         db.setState(state.getState());
-        db.setWorkflowSignatures(state.getWorkflowSignatures());
 
         db.setDescription(state.getDescription());
         db.setStatus(state.getStatus());

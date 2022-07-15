@@ -5,6 +5,7 @@ wwf\org\tenant\service\ModuleService.class
 wwf\org\tenant\entity\PermissionTenant.class
 wwf\org\tenant\service\CalendarService.class
 wwf\org\tenant\controller\UserController.class
+wwf\org\tenant\entity\CalendarMonth.class
 wwf\org\tenant\repository\SubModulesRepository.class
 wwf\org\tenant\repository\TimesheetStatusRepository.class
 wwf\org\tenant\service\WorkflowServiceImpl.class
@@ -23,9 +24,11 @@ wwf\org\tenant\service\EmailConfigurationServiceImpl.class
 wwf\org\tenant\repository\TenantModuleRepository.class
 wwf\org\tenant\service\ImageConfigServiceImpl.class
 wwf\org\tenant\ServiceTenantApplication.class
+wwf\org\tenant\service\CalendarMonthServiceImpl.class
 wwf\org\tenant\repository\WorkflowSignatureRepository.class
 wwf\org\tenant\service\WorkflowService.class
 wwf\org\tenant\entity\TimesheetStatus.class
+wwf\org\tenant\service\CalendarMonthService.class
 wwf\org\tenant\controller\TenantController.class
 wwf\org\tenant\entity\Workflow.class
 wwf\org\tenant\service\ModuleServiceImpl.class
@@ -37,6 +40,7 @@ wwf\org\tenant\controller\WorkflowController.class
 wwf\org\tenant\repository\PermissionTenantRepository.class
 wwf\org\tenant\repository\CalendarRepository.class
 wwf\org\tenant\service\TenantModuleService.class
+wwf\org\tenant\controller\CalendarMonthController.class
 wwf\org\tenant\service\AdministrativeUnitService.class
 wwf\org\tenant\service\CountryServiceImpl.class
 wwf\org\tenant\controller\AdministrativeUnitController.class
@@ -61,6 +65,7 @@ wwf\org\tenant\entity\TimesheetVersion.class
 wwf\org\tenant\entity\WorkflowSignatures.class
 wwf\org\tenant\controller\CountryController.class
 wwf\org\tenant\repository\WorkflowRepository.class
+wwf\org\tenant\repository\CalendarMonthRepository.class
 wwf\org\tenant\service\TenantModuleServiceImpl.class
 wwf\org\tenant\entity\Calendar.class
 wwf\org\tenant\serviceApi\FormatMessage.class
