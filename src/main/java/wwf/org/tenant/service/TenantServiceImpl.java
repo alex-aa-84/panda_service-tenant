@@ -58,6 +58,7 @@ public class TenantServiceImpl implements TenantService{
         tenantDB.setDepartmentWwf(tenant.getDepartmentWwf());
         tenantDB.setAdministrativeUnit(tenant.getAdministrativeUnit());
         tenantDB.setCountry(tenant.getCountry());
+        tenantDB.setServiceUrl(tenant.getServiceUrl());
 
         tenantDB.setStatus(tenant.getStatus());
         tenantDB.setLast_update_date(new Date());

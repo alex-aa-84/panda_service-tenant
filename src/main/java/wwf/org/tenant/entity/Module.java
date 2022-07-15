@@ -36,15 +36,14 @@ public class Module {
     @Column(nullable = false)
     private String serviceUrl;
 
-    private String exposeApi;
-
-    private String serviceLanguage;
-    private String serviceLanguageVersion;
-
     private String serviceGit;
 
     @OneToMany(mappedBy = "module", cascade = CascadeType.ALL)
     private List<SubModules> subModulesList;
+
+    @OneToMany(mappedBy = "module", cascade = CascadeType.ALL)
+    private List<TenantModule> tenantModules;
+
 
     private Integer attribute1;
     private Integer attribute2;

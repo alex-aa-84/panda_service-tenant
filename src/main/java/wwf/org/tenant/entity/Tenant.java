@@ -51,6 +51,12 @@ public class Tenant {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Country country;
 
+    @Column(nullable = false)
+    private String serviceUrl;
+
+    @OneToMany(mappedBy = "tenant", cascade = CascadeType.ALL)
+    private List<TenantModule> tenantModules;
+
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;
