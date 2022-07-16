@@ -30,21 +30,6 @@ public class Module {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private ImageConfig imageConfig;
 
-    @Column(nullable = false)
-    private String routerLink;
-
-    @Column(nullable = false)
-    private String serviceUrl;
-
-    private String serviceGit;
-
-    @OneToMany(mappedBy = "module", cascade = CascadeType.ALL)
-    private List<SubModules> subModulesList;
-
-    @OneToMany(mappedBy = "module", cascade = CascadeType.ALL)
-    private List<TenantModule> tenantModules;
-
-
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;

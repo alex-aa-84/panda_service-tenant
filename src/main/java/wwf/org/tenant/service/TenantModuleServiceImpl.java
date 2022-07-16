@@ -9,6 +9,7 @@ import wwf.org.tenant.entity.TenantModule;
 import wwf.org.tenant.repository.TenantModuleRepository;
 import wwf.org.tenant.serviceApi.MD5Util;
 
+import javax.persistence.Column;
 import java.util.Date;
 import java.util.List;
 
@@ -59,6 +60,11 @@ public class TenantModuleServiceImpl implements TenantModuleService{
         tenantModuleDB.setTenant(tenantModule.getTenant());
         tenantModuleDB.setModule(tenantModule.getModule());
 
+        tenantModuleDB.setServiceUrl(tenantModule.getServiceUrl());
+        tenantModuleDB.setExposeApi(tenantModule.getExposeApi());
+        tenantModuleDB.setUri(tenantModule.getUri());
+        tenantModuleDB.setRouterLink(tenantModule.getRouterLink());
+        tenantModuleDB.setServiceGit(tenantModule.getServiceGit());
 
         tenantModuleDB.setStatus(tenantModule.getStatus());
         tenantModuleDB.setLast_update_date(new Date());

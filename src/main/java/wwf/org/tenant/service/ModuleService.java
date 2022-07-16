@@ -13,9 +13,6 @@ public interface ModuleService {
 
     public Module findByModule(String module);
 
-    public Module findByRouterLink(String routerLink);
-    public Module findByServiceUrl(String serviceUrl);
-
     public Module updateModule(Module module);
 
     public Boolean deleteModule(Long id);

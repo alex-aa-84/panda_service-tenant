@@ -46,8 +46,6 @@ public class SubModulesServiceImpl implements SubModulesService{
         staffModuleDB.setModule(staffModule.getModule());
         staffModuleDB.setSubmodule(staffModule.getSubmodule());
         staffModuleDB.setDescription(staffModule.getDescription());
-        staffModuleDB.setRouterLink(staffModule.getRouterLink());
-        staffModuleDB.setServiceUrl(staffModule.getServiceUrl());
 
         staffModuleDB.setAttribute1(staffModule.getAttribute1());
         staffModuleDB.setAttribute2(staffModule.getAttribute2());

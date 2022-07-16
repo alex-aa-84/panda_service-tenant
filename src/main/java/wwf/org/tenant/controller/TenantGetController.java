@@ -5,6 +5,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wwf.org.tenant.entity.Tenant;
+import wwf.org.tenant.entity.TenantModule;
+import wwf.org.tenant.service.TenantModuleService;
 import wwf.org.tenant.service.TenantService;
 
 import java.util.List;
@@ -17,6 +19,8 @@ public class TenantGetController {
 
     @Autowired
     private TenantService tenantService;
+    @Autowired
+    private TenantModuleService tenantModuleService;
 
     @GetMapping
     public ResponseEntity<List<Tenant>> listTenant(@RequestHeader HttpHeaders headers){
@@ -26,5 +30,15 @@ public class TenantGetController {
         }
 
         return ResponseEntity.ok(tenants);
+    }
+
+    @GetMapping(value = "/{tenant}")
+    public ResponseEntity<List<TenantModule>> getTenantModuleTenant(@PathVariable("tenant") String tenant){
+        Tenant tenantDB = tenantService.findByTenant(tenant);
+        List<TenantModule> tenantmodules = tenantModuleService.findByTenant(tenantDB);
+        if(null == tenantmodules){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(tenantmodules);
     }
 }

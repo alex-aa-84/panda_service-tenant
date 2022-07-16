@@ -30,11 +30,6 @@ public class SubModules {
 
     private String description;
 
-    @Column(nullable = false)
-    private String routerLink;
-
-    private String serviceUrl;
-
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;

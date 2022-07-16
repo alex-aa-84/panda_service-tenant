@@ -21,7 +21,7 @@ public class TenantModule {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(nullable = false, referencedColumnName = "id")
+    @JoinColumn(nullable = false, referencedColumnName = "id", name = "tenant_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Tenant tenant;
 
@@ -30,6 +30,20 @@ public class TenantModule {
     @JoinColumn(nullable = false, referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Module module;
+
+    @Column(nullable = false)
+    private String serviceUrl;
+
+    @Column(nullable = false)
+    private String exposeApi;
+
+    @Column(nullable = false)
+    private String uri;
+
+    @Column(nullable = false)
+    private String routerLink;
+
+    private String serviceGit;
 
     private Integer attribute1;
     private Integer attribute2;
