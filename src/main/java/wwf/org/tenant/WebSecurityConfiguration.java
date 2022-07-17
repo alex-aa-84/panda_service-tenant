@@ -20,7 +20,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         // @formatter:off
         http.cors().and().authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/tenants").permitAll()
+                .antMatchers(HttpMethod.GET, "/tenants", "/tenants/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .oauth2ResourceServer()

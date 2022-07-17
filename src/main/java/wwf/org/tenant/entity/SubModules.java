@@ -28,6 +28,9 @@ public class SubModules {
     @Column(nullable = false)
     private String submodule;
 
+    @Column(nullable = false)
+    private String routerLink;
+
     private String description;
 
     private Integer attribute1;

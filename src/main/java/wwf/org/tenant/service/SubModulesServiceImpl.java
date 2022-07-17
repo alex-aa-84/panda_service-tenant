@@ -28,48 +28,49 @@ public class SubModulesServiceImpl implements SubModulesService{
     }
 
     @Override
-    public SubModules createSubModules(SubModules staffModule) {
-        staffModule.setStatus("CREATED");
-        staffModule.setCreation_date(new Date());
-        staffModule.setLast_update_date(new Date());
+    public SubModules createSubModules(SubModules submodules) {
+        submodules.setStatus("CREATED");
+        submodules.setCreation_date(new Date());
+        submodules.setLast_update_date(new Date());
 
-        return subModuleRepository.save(staffModule);
+        return subModuleRepository.save(submodules);
     }
 
     @Override
-    public SubModules updateSubModules(SubModules staffModule) {
-        SubModules staffModuleDB = getSubModules(staffModule.getId());
-        if(null == staffModuleDB){
+    public SubModules updateSubModules(SubModules submodules) {
+        SubModules submodulesDB = getSubModules(submodules.getId());
+        if(null == submodulesDB){
             return null;
         }
 
-        staffModuleDB.setModule(staffModule.getModule());
-        staffModuleDB.setSubmodule(staffModule.getSubmodule());
-        staffModuleDB.setDescription(staffModule.getDescription());
+        submodulesDB.setModule(submodules.getModule());
+        submodulesDB.setSubmodule(submodules.getSubmodule());
+        submodulesDB.setRouterLink(submodules.getRouterLink());
+        submodulesDB.setDescription(submodules.getDescription());
 
-        staffModuleDB.setAttribute1(staffModule.getAttribute1());
-        staffModuleDB.setAttribute2(staffModule.getAttribute2());
-        staffModuleDB.setAttribute3(staffModule.getAttribute3());
-        staffModuleDB.setAttribute4(staffModule.getAttribute4());
-        staffModuleDB.setAttribute5(staffModule.getAttribute5());
-        staffModuleDB.setAttribute6(staffModule.getAttribute6());
-        staffModuleDB.setAttribute7(staffModule.getAttribute7());
-        staffModuleDB.setAttribute8(staffModule.getAttribute8());
-        staffModuleDB.setAttribute9(staffModule.getAttribute9());
-        staffModuleDB.setAttribute10(staffModule.getAttribute10());
+        submodulesDB.setAttribute1(submodules.getAttribute1());
+        submodulesDB.setAttribute2(submodules.getAttribute2());
+        submodulesDB.setAttribute3(submodules.getAttribute3());
+        submodulesDB.setAttribute4(submodules.getAttribute4());
+        submodulesDB.setAttribute5(submodules.getAttribute5());
+        submodulesDB.setAttribute6(submodules.getAttribute6());
+        submodulesDB.setAttribute7(submodules.getAttribute7());
+        submodulesDB.setAttribute8(submodules.getAttribute8());
+        submodulesDB.setAttribute9(submodules.getAttribute9());
+        submodulesDB.setAttribute10(submodules.getAttribute10());
 
-        staffModuleDB.setStatus(staffModule.getStatus());
+        submodulesDB.setStatus(submodules.getStatus());
 
-        staffModuleDB.setLast_update_by(staffModule.getLast_update_by());
-        staffModuleDB.setLast_update_date(new Date());
+        submodulesDB.setLast_update_by(submodules.getLast_update_by());
+        submodulesDB.setLast_update_date(new Date());
 
-        return subModuleRepository.save(staffModuleDB);
+        return subModuleRepository.save(submodulesDB);
     }
 
     @Override
     public Boolean deleteSubModules(Long id) {
-        SubModules staffModuleDB = getSubModules(id);
-        if(null == staffModuleDB){
+        SubModules submodulesDB = getSubModules(id);
+        if(null == submodulesDB){
             return false;
         }
 
