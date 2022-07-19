@@ -4,8 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import wwf.org.tenant.entity.Module;
+import wwf.org.tenant.entity.SubModules;
 import wwf.org.tenant.entity.Tenant;
 import wwf.org.tenant.entity.TenantModule;
+import wwf.org.tenant.service.ModuleService;
+import wwf.org.tenant.service.SubModulesService;
 import wwf.org.tenant.service.TenantModuleService;
 import wwf.org.tenant.service.TenantService;
 

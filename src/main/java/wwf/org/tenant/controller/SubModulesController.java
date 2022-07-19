@@ -7,7 +7,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import wwf.org.tenant.entity.Module;
 import wwf.org.tenant.entity.SubModules;
+import wwf.org.tenant.service.ModuleService;
 import wwf.org.tenant.service.SubModulesService;
 import wwf.org.tenant.serviceApi.FormatMessage;
 
@@ -22,6 +24,10 @@ import java.util.List;
 public class SubModulesController {
     @Autowired
     private SubModulesService service;
+
+    @Autowired
+    private ModuleService moduleService;
+
 
     private FormatMessage formatMessage = new FormatMessage();
 
@@ -42,6 +48,16 @@ public class SubModulesController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(data);
+    }
+
+    @GetMapping(value = "/module/{id}")
+    public ResponseEntity<List<SubModules>> getSubmodule(@PathVariable("id") Long id){
+        Module moduleDB = moduleService.getModule(id);
+        List<SubModules> submodules = service.findByModule(moduleDB);
+        if(null == submodules){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(submodules);
     }
 
     @PostMapping()

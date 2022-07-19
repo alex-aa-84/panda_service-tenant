@@ -33,6 +33,8 @@ public class SubModules {
 
     private String description;
 
+    private Integer order;
+
     private Integer attribute1;
     private Integer attribute2;
     private Integer attribute3;

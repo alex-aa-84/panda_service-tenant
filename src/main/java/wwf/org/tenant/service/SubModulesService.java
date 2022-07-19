@@ -1,6 +1,7 @@
 package wwf.org.tenant.service;
 
 
+import wwf.org.tenant.entity.Module;
 import wwf.org.tenant.entity.SubModules;
 
 import java.util.List;
@@ -14,4 +15,5 @@ public interface SubModulesService {
     public Boolean deleteSubModules(Long id);
 
     public SubModules findByModuleIdAndSubmodule(Long moduleId, String submodule);
+    public List<SubModules> findByModule(Module module);
 }

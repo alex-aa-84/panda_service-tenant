@@ -4,6 +4,7 @@ package wwf.org.tenant.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import wwf.org.tenant.entity.Module;
 import wwf.org.tenant.entity.SubModules;
 import wwf.org.tenant.repository.SubModulesRepository;
 
@@ -47,6 +48,7 @@ public class SubModulesServiceImpl implements SubModulesService{
         submodulesDB.setSubmodule(submodules.getSubmodule());
         submodulesDB.setRouterLink(submodules.getRouterLink());
         submodulesDB.setDescription(submodules.getDescription());
+        submodulesDB.setOrder(submodules.getOrder());
 
         submodulesDB.setAttribute1(submodules.getAttribute1());
         submodulesDB.setAttribute2(submodules.getAttribute2());
@@ -83,4 +85,8 @@ public class SubModulesServiceImpl implements SubModulesService{
         return subModuleRepository.findByModuleIdAndSubmodule(moduleId, submodule);
     }
 
+    @Override
+    public List<SubModules> findByModule(Module module) {
+        return subModuleRepository.findByModule(module);
+    }
 }
