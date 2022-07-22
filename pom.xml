@@ -12,9 +12,11 @@
 	<artifactId>tenantApiTs</artifactId>
 	<version>v1.3</version>
 
+
 	<packaging>war</packaging>
 
 	<name>service-tenant</name>
+
 	<description>Api Tenant WWF Mundo</description>
 	<properties>
 		<java.version>17</java.version>
@@ -79,10 +81,17 @@
 
 		<!--Para no generar conflicto entre server y el servidor enbebido-->
 
+		<!--
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
+		</dependency>
+		-->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
 		</dependency>
 
 	</dependencies>

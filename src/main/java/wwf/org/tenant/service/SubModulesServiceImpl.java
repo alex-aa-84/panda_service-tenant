@@ -48,7 +48,7 @@ public class SubModulesServiceImpl implements SubModulesService{
         submodulesDB.setSubmodule(submodules.getSubmodule());
         submodulesDB.setRouterLink(submodules.getRouterLink());
         submodulesDB.setDescription(submodules.getDescription());
-        submodulesDB.setOrder(submodules.getOrder());
+        submodulesDB.setOrderRow(submodules.getOrderRow());
 
         submodulesDB.setAttribute1(submodules.getAttribute1());
         submodulesDB.setAttribute2(submodules.getAttribute2());

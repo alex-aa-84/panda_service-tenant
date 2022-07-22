@@ -3,6 +3,7 @@ package wwf.org.tenant.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import wwf.org.tenant.entity.Tenant;
 import wwf.org.tenant.entity.TenantModule;
 import wwf.org.tenant.entity.User;
 import wwf.org.tenant.repository.UserRepository;
@@ -78,5 +79,10 @@ public class UserServiceImpl implements UserService{
 
         userRepository.deleteById(id);
         return true;
+    }
+
+    @Override
+    public List<User> findByTenant(Tenant tenant) {
+        return userRepository.findByTenant(tenant);
     }
 }

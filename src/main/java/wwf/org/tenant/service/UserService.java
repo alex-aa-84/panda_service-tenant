@@ -1,5 +1,6 @@
 package wwf.org.tenant.service;
 
+import wwf.org.tenant.entity.Tenant;
 import wwf.org.tenant.entity.User;
 
 import java.util.List;
@@ -14,5 +15,6 @@ public interface UserService {
     public User createUser(User user);
     public User updateUser(User user);
     public Boolean deleteUser(Long id);
+    public List<User> findByTenant(Tenant tenant);
 
 }

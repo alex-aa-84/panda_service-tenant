@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import wwf.org.tenant.entity.Tenant;
 import wwf.org.tenant.entity.User;
+import wwf.org.tenant.service.TenantService;
 import wwf.org.tenant.service.UserService;
 import wwf.org.tenant.serviceApi.FormatMessage;
 
@@ -23,6 +24,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private TenantService tenantService;
 
     private FormatMessage formatMessage = new FormatMessage();
 
@@ -46,11 +50,28 @@ public class UserController {
     }
 
     @GetMapping(value = "/oid/{oid}")
-    public ResponseEntity<User> getByTenant(@PathVariable("oid") String oid){
+    public ResponseEntity<User> getByUser(@PathVariable("oid") String oid){
         User userR = userService.findByOid(oid);
         if(null == userR){
             return ResponseEntity.noContent().build();
         }
+        return ResponseEntity.ok(userR);
+    }
+
+    @GetMapping(value = "/tenant/{id}")
+    public ResponseEntity<List<User>> getByUsers(@PathVariable("id") Long id){
+        Tenant tenantR = tenantService.getTenant(id);
+        List<User> userR = userService.findByTenant(tenantR);
+
+        if(null == tenantR){
+            return ResponseEntity.noContent().build();
+        }
+
+        if(null == userR){
+            return ResponseEntity.noContent().build();
+        }
+
+
         return ResponseEntity.ok(userR);
     }
 

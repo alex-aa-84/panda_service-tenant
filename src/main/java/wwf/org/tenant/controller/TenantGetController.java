@@ -4,14 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import wwf.org.tenant.entity.*;
 import wwf.org.tenant.entity.Module;
-import wwf.org.tenant.entity.SubModules;
-import wwf.org.tenant.entity.Tenant;
-import wwf.org.tenant.entity.TenantModule;
-import wwf.org.tenant.service.ModuleService;
-import wwf.org.tenant.service.SubModulesService;
-import wwf.org.tenant.service.TenantModuleService;
-import wwf.org.tenant.service.TenantService;
+import wwf.org.tenant.service.*;
 
 import java.util.List;
 
@@ -25,6 +20,9 @@ public class TenantGetController {
     private TenantService tenantService;
     @Autowired
     private TenantModuleService tenantModuleService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping
     public ResponseEntity<List<Tenant>> listTenant(@RequestHeader HttpHeaders headers){
@@ -44,5 +42,15 @@ public class TenantGetController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(tenantmodules);
+    }
+
+    @GetMapping(value = "/user/{id}")
+    public ResponseEntity<User> getUser(@PathVariable("id") Long id){
+        User user = userService.getUser(id);
+
+        if(null == user){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(user);
     }
 }

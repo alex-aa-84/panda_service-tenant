@@ -50,7 +50,7 @@ public class ModuleServiceImpl implements ModuleService {
         moduleDB.setModule(module.getModule());
         moduleDB.setDescription(module.getDescription());
         moduleDB.setImageConfig(module.getImageConfig());
-        moduleDB.setOrder(module.getOrder());
+        moduleDB.setOrderRow(module.getOrderRow());
 
         moduleDB.setStatus(module.getStatus());
         moduleDB.setLast_update_date(new Date());
