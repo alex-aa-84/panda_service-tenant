@@ -77,4 +77,17 @@ public class CalendarServiceImpl implements CalendarService {
         repo.deleteById(id);
         return true;
     }
+
+    @Override
+    public Calendar findByDayAndMonthAndYear(Integer day, Integer month, Integer year) {
+        return repo.findByDayAndMonthAndYear(day, month, year);
+    }
+
+    @Override
+    public List<Calendar> findRangoCalendar(Date dateIni, Date dateFin) {
+        // TODO Auto-generated method stub
+        return repo.findRangoCalendar(dateIni, dateFin);
+    }
+
+
 }

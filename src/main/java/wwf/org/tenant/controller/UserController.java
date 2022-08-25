@@ -40,6 +40,16 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
+    @GetMapping(value = "/active")
+    public ResponseEntity<List<User>> listUsersActive(){
+        List<User> users = userService.findActiveUser();
+        if(users.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(users);
+    }
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<User> getUser(@PathVariable("id") Long id){
         User user = userService.getUser(id);

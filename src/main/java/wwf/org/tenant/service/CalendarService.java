@@ -14,4 +14,8 @@ public interface CalendarService {
     public Calendar updateCalendar(Calendar calendar);
 
     public Boolean deleteCalendar(Long id);
+
+    public Calendar findByDayAndMonthAndYear(Integer day, Integer month, Integer year);
+
+    public List<Calendar> findRangoCalendar(Date dateIni, Date dateFin);
 }

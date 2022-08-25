@@ -11,7 +11,10 @@ import wwf.org.tenant.entity.Calendar;
 import wwf.org.tenant.service.CalendarService;
 import wwf.org.tenant.serviceApi.FormatMessage;
 
+import javax.persistence.Temporal;
 import javax.validation.Valid;
+
+import java.util.Date;
 import java.util.List;
 
 @CrossOrigin(origins = {"${settings.cors_origin}", "${settings.cors_origin_pro}"}, maxAge = 3600,
@@ -40,6 +43,44 @@ public class CalendarController {
         if(null == bd) {
             return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.ok(bd);
+    }
+
+    @GetMapping(value = "date/{date}")
+    public ResponseEntity<Calendar> getCalendarDate(@PathVariable("date")  Date date){
+        Calendar bd = service.findByCalendar(date);
+        if(null == bd) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(bd);
+    }
+
+    @GetMapping(value = "date/{day}/{month}/{year}")
+    public ResponseEntity<Calendar> getCalendarDate2(@PathVariable("day") Integer day, @PathVariable("month") Integer month, @PathVariable("year") Integer year){
+        Calendar bd = service.findByDayAndMonthAndYear(day, month, year);
+        if(null == bd) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(bd);
+    }
+
+    @GetMapping(value = "rango/{day}/{month}/{year}/{days}")
+    public ResponseEntity<List<Calendar>> getCalendarDate3(@PathVariable("day") Integer day, @PathVariable("month") Integer month, @PathVariable("year") Integer year, @PathVariable("days") Integer days){
+        
+        java.util.Calendar calInicial = java.util.Calendar.getInstance();
+        calInicial.set(java.util.Calendar.YEAR, year);
+        calInicial.set(java.util.Calendar.MONTH, month);
+        calInicial.set(java.util.Calendar.DAY_OF_MONTH, day);
+       
+        java.util.Calendar calFinal = java.util.Calendar.getInstance();
+        calFinal.setTime(calInicial.getTime());
+        calFinal.add(java.util.Calendar.DATE, days);
+               
+        List<Calendar> bd = service.findRangoCalendar(calInicial.getTime(), calFinal.getTime());
+        if(null == bd) {
+            return ResponseEntity.notFound().build();
+        }
+        
         return ResponseEntity.ok(bd);
     }
 

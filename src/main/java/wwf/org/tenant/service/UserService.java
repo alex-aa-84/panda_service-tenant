@@ -17,4 +17,6 @@ public interface UserService {
     public Boolean deleteUser(Long id);
     public List<User> findByTenant(Tenant tenant);
 
+    public List<User> findActiveUser();
+
 }
